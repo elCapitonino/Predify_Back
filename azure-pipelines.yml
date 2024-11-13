@@ -1,0 +1,102 @@
+# ASP.NET
+# Build and test ASP.NET projects.
+# Add steps that publish symbols, save build artifacts, deploy, and more:
+# https://docs.microsoft.com/azure/devops/pipelines/apps/aspnet/build-aspnet-4
+
+trigger:
+- master
+- hotfix/*
+
+pr:
+ - master
+
+pool:
+  vmImage: 'windows-latest'
+
+variables:
+  solution: '**/*.sln'
+  buildPlatform: 'Any CPU'
+  buildConfiguration: 'Release'
+  webProjectName: 'DSS.WebApiService'
+  isMain: $[eq(variables['Build.SourceBranch'], 'refs/heads/master')]
+  isHotfix: $[startsWith(variables['Build.SourceBranch'], 'refs/heads/hotfix/')]
+
+
+stages:
+  - stage: Quality
+    condition: and(succeeded(), eq(variables.isHotfix, false))
+    jobs:
+      - job: quality
+        steps:
+        - task: NuGetToolInstaller@1
+
+        - task: NuGetCommand@2
+          inputs:
+            command: 'restore'
+            restoreSolution: '$(solution)'
+            feedsToUse: 'config'
+
+        - task: VSBuild@1
+          inputs:
+            solution: '$(solution)'
+            msbuildArgs: '/p:TargetFrameworkVersion=v4.6.2'
+            platform: '$(buildPlatform)'
+            configuration: '$(buildConfiguration)'
+
+       
+  - stage: Deploy
+    condition: or(and(succeeded(), eq(variables.isMain, true)),eq(variables.isHotfix,true))
+    jobs:
+      - job: deploy
+        steps:
+        - task: NuGetToolInstaller@1
+        - task: NuGetCommand@2
+          inputs:
+            command: 'restore'
+            restoreSolution: '$(solution)'
+            feedsToUse: 'config'
+
+        - pwsh: |
+                (Get-Content -Path "$(Build.SourcesDirectory)/$(webProjectName)/$(webProjectName).csproj" -Raw) -replace "<ExcludeFilesFromDeployment>Web.config</ExcludeFilesFromDeployment>", "" | Set-Content -Path "$(Build.SourcesDirectory)/$(webProjectName)/$(webProjectName).csproj"
+                
+                $xmlContent = @'
+                <?xml version="1.0" encoding="utf-8"?>
+                <!--
+                https://go.microsoft.com/fwlink/?LinkID=208121.
+                -->
+                <Project>
+                  <PropertyGroup>
+                    <DeleteExistingFiles>false</DeleteExistingFiles>
+                    <ExcludeApp_Data>false</ExcludeApp_Data>
+                    <LaunchSiteAfterPublish>true</LaunchSiteAfterPublish>
+                    <LastUsedBuildConfiguration>Release</LastUsedBuildConfiguration>
+                    <LastUsedPlatform>Any CPU</LastUsedPlatform>
+                    <PublishProvider>FileSystem</PublishProvider>
+                    <PublishUrl>bin\app.publish\</PublishUrl>
+                    <WebPublishMethod>FileSystem</WebPublishMethod>
+                    <_TargetId>Folder</_TargetId>
+                  </PropertyGroup>
+                </Project>
+                '@
+                mkdir "$(Build.SourcesDirectory)/$(webProjectName)/Properties/PublishProfiles"
+                $xmlContent | Set-Content -Path "$(Build.SourcesDirectory)/$(webProjectName)/Properties/PublishProfiles/FolderProfile.pubxml"
+          displayName: 'Replace Web.config and FolderProfile.pubxml'
+
+
+        - task: VSBuild@1
+          inputs:
+            solution: '$(Build.SourcesDirectory)/$(webProjectName)/$(webProjectName).csproj'
+            msbuildArgs: '/p:DeployOnBuild=true /p:SkipInvalidConfigurations=true /p:SolutionDir="$(Build.SourcesDirectory)" /p:TargetFrameworkVersion=v4.6.2 /p:PublishProfile="FolderProfile.pubxml"'
+            configuration: '$(buildConfiguration)'
+
+        - task: PublishBuildArtifacts@1
+          inputs:
+            PathtoPublish: '$(Build.SourcesDirectory)/$(webProjectName)/bin/app.publish'
+            ArtifactName: 'bin'
+            publishLocation: 'Container'
+
+        - task: PublishBuildArtifacts@1
+          inputs:
+            PathtoPublish: '$(Build.SourcesDirectory)\packages\EntityFramework.6.4.4\tools\net45\any\ef6.exe'
+            ArtifactName: 'migration'
+            publishLocation: 'Container'
