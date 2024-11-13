@@ -1,0 +1,1477 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.props" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" />
+  <Import Project="..\packages\Microsoft.Net.Compilers.1.1.1\build\Microsoft.Net.Compilers.props" Condition="Exists('..\packages\Microsoft.Net.Compilers.1.1.1\build\Microsoft.Net.Compilers.props')" />
+  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.1\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.1\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <ExcludeFilesFromDeployment>Web.config</ExcludeFilesFromDeployment>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{4221348C-15BD-4EC7-A15F-066298B47310}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>DSS.WebApiService</RootNamespace>
+    <AssemblyName>DSS.WebApiService</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort>44300</IISExpressSSLPort>
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <TargetFrameworkProfile />
+    <Use64BitIISExpress />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE;DEBUG</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>0</WarningLevel>
+    <DocumentationFile>App_Data/XmlDocument.xml</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Antlr3.Runtime, Version=3.5.0.2, Culture=neutral, PublicKeyToken=eb42632606e9261f, processorArchitecture=MSIL">
+      <HintPath>..\packages\Antlr.3.5.0.2\lib\Antlr3.Runtime.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="AWSSDK.Core, Version=3.3.0.0, Culture=neutral, PublicKeyToken=885c28607f98e604, processorArchitecture=MSIL">
+      <HintPath>..\packages\AWSSDK.Core.3.5.1.33\lib\net45\AWSSDK.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="AWSSDK.S3, Version=3.3.0.0, Culture=neutral, PublicKeyToken=885c28607f98e604, processorArchitecture=MSIL">
+      <HintPath>..\packages\AWSSDK.S3.3.5.3.11\lib\net45\AWSSDK.S3.dll</HintPath>
+    </Reference>
+    <Reference Include="BouncyCastle.Crypto, Version=1.8.9.0, Culture=neutral, PublicKeyToken=0e99375e54769942">
+      <HintPath>..\packages\BouncyCastle.1.8.9\lib\BouncyCastle.Crypto.dll</HintPath>
+    </Reference>
+    <Reference Include="Cassandra, Version=3.99.0.0, Culture=neutral, PublicKeyToken=10b231fbfc8c4b4d, processorArchitecture=MSIL">
+      <HintPath>..\packages\CassandraCSharpDriver.3.15.0\lib\net452\Cassandra.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="CsvHelper, Version=26.0.0.0, Culture=neutral, PublicKeyToken=8c4959082be5c823, processorArchitecture=MSIL">
+      <HintPath>..\packages\CsvHelper.26.1.0\lib\net45\CsvHelper.dll</HintPath>
+    </Reference>
+    <Reference Include="DnsClient, Version=1.4.0.0, Culture=neutral, PublicKeyToken=4574bb5573c51424, processorArchitecture=MSIL">
+      <HintPath>..\packages\DnsClient.1.4.0\lib\net45\DnsClient.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework6.Npgsql, Version=3.2.0.0, Culture=neutral, PublicKeyToken=5d8b90d52f46fda7, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework6.Npgsql.3.2.0\lib\net45\EntityFramework6.Npgsql.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EPPlus, Version=4.5.3.3, Culture=neutral, PublicKeyToken=ea159fdaa78159a1, processorArchitecture=MSIL">
+      <HintPath>..\packages\EPPlus.4.5.3.3\lib\net40\EPPlus.dll</HintPath>
+    </Reference>
+    <Reference Include="Intelicraft.Common, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Dependencias\Intelicraft.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Ionic.Zip, Version=1.9.8.0, Culture=neutral, PublicKeyToken=6583c7c814667745, processorArchitecture=MSIL">
+      <HintPath>..\packages\DotNetZip.1.9.8\lib\net20\Ionic.Zip.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Jil, Version=2.12.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Jil.2.12.1\lib\net45\Jil.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="JWT, Version=7.0.0.0, Culture=neutral, PublicKeyToken=6f98bca0f40f2ecf, processorArchitecture=MSIL">
+      <HintPath>..\packages\JWT.7.3.1\lib\net46\JWT.dll</HintPath>
+    </Reference>
+    <Reference Include="LZ4, Version=1.0.15.93, Culture=neutral, PublicKeyToken=62e1b5ec1eec9bdd, processorArchitecture=MSIL">
+      <HintPath>..\packages\lz4net.1.0.15.93\lib\net4-client\LZ4.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="MathNet.Numerics, Version=5.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MathNet.Numerics.5.0.0\lib\net461\MathNet.Numerics.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AI.Agent.Intercept, Version=2.4.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.Agent.Intercept.2.4.0\lib\net45\Microsoft.AI.Agent.Intercept.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AI.DependencyCollector, Version=2.21.0.429, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.DependencyCollector.2.21.0\lib\net452\Microsoft.AI.DependencyCollector.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AI.PerfCounterCollector, Version=2.21.0.429, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.PerfCounterCollector.2.21.0\lib\net452\Microsoft.AI.PerfCounterCollector.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AI.ServerTelemetryChannel, Version=2.21.0.429, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.WindowsServer.TelemetryChannel.2.21.0\lib\net452\Microsoft.AI.ServerTelemetryChannel.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AI.Web, Version=2.21.0.429, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.Web.2.21.0\lib\net452\Microsoft.AI.Web.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AI.WindowsServer, Version=2.21.0.429, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.WindowsServer.2.21.0\lib\net452\Microsoft.AI.WindowsServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ApplicationInsights, Version=2.21.0.429, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.2.21.0\lib\net46\Microsoft.ApplicationInsights.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Core, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.1\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.EntityFramework, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.EntityFramework.2.2.1\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Owin, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Owin.2.2.1\lib\net45\Microsoft.AspNet.Identity.Owin.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.TelemetryCorrelation, Version=1.0.8.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.TelemetryCorrelation.1.0.8\lib\net45\Microsoft.AspNet.TelemetryCorrelation.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.1\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Extensions.DependencyInjection.Abstractions, Version=1.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.DependencyInjection.Abstractions.1.0.0\lib\netstandard1.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Logging, Version=1.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Logging.1.0.0\lib\netstandard1.1\Microsoft.Extensions.Logging.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Logging.Abstractions, Version=1.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Logging.Abstractions.1.0.0\lib\netstandard1.1\Microsoft.Extensions.Logging.Abstractions.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.IdentityModel.Logging, Version=6.8.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.IdentityModel.Logging.6.8.0\lib\net461\Microsoft.IdentityModel.Logging.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.IdentityModel.Tokens, Version=6.8.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.IdentityModel.Tokens.6.8.0\lib\net461\Microsoft.IdentityModel.Tokens.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.3.0.1\lib\net45\Microsoft.Owin.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Cors, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Cors.3.0.1\lib\net45\Microsoft.Owin.Cors.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Host.SystemWeb, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Host.SystemWeb.3.0.1\lib\net45\Microsoft.Owin.Host.SystemWeb.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.3.0.1\lib\net45\Microsoft.Owin.Security.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Cookies, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.Cookies.3.0.1\lib\net45\Microsoft.Owin.Security.Cookies.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Facebook, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.Facebook.3.0.1\lib\net45\Microsoft.Owin.Security.Facebook.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Google, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.Google.3.0.1\lib\net45\Microsoft.Owin.Security.Google.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.OAuth, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.OAuth.3.0.1\lib\net45\Microsoft.Owin.Security.OAuth.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.VisualBasic" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="MongoDB.Bson, Version=2.13.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MongoDB.Bson.2.13.3\lib\net452\MongoDB.Bson.dll</HintPath>
+    </Reference>
+    <Reference Include="MongoDB.Driver, Version=2.13.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MongoDB.Driver.2.13.3\lib\net452\MongoDB.Driver.dll</HintPath>
+    </Reference>
+    <Reference Include="MongoDB.Driver.Core, Version=2.13.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MongoDB.Driver.Core.2.13.3\lib\net452\MongoDB.Driver.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="MongoDB.Libmongocrypt, Version=1.2.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MongoDB.Libmongocrypt.1.2.2\lib\net452\MongoDB.Libmongocrypt.dll</HintPath>
+    </Reference>
+    <Reference Include="NCalc, Version=1.3.8.0, Culture=neutral, PublicKeyToken=973cde3f1cafed03, processorArchitecture=MSIL">
+      <HintPath>..\packages\ncalc.1.3.8\lib\NCalc.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.11.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Npgsql, Version=4.0.2.0, Culture=neutral, PublicKeyToken=5d8b90d52f46fda7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Npgsql.4.0.2\lib\net451\Npgsql.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Owin, Version=1.0.0.0, Culture=neutral, PublicKeyToken=f0ebd12fd5e55cc5, processorArchitecture=MSIL">
+      <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="policy.2.3.Sap.Data.Hana.v4.5, Version=2.3.119.0, Culture=neutral, PublicKeyToken=0326b8ea63db4bc4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Users\Lilton Xavier\Desktop\ADONET\ado.net\v4.5\policy.2.3.Sap.Data.Hana.v4.5.dll</HintPath>
+    </Reference>
+    <Reference Include="Predify.Queries, Version=1.0.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Predify.Queries.1.0.11\lib\net461\Predify.Queries.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="RestSharp, Version=106.11.8.0, Culture=neutral, PublicKeyToken=598062e77f915f75, processorArchitecture=MSIL">
+      <HintPath>..\packages\RestSharp.106.11.8-alpha.0.12\lib\net452\RestSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="Sap.Data.Hana.v4.5, Version=2.3.119.0, Culture=neutral, PublicKeyToken=0326b8ea63db4bc4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Users\Lilton Xavier\Desktop\ADONET\ado.net\v4.5\Sap.Data.Hana.v4.5.dll</HintPath>
+    </Reference>
+    <Reference Include="Sap.Data.SQLAnywhere.v4.5, Version=17.0.7.33994, Culture=neutral, PublicKeyToken=f222fc4333e0d400, processorArchitecture=MSIL">
+      <HintPath>..\packages\Sap.Data.SQLAnywhere.17.0.7.3399\lib\net45\Sap.Data.SQLAnywhere.v4.5.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="SendGrid, Version=6.3.4.0, Culture=neutral, PublicKeyToken=4f047e93159395ca, processorArchitecture=MSIL">
+      <HintPath>..\packages\Sendgrid.6.3.4\lib\SendGrid.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="SendGrid.SmtpApi, Version=1.3.1.0, Culture=neutral, PublicKeyToken=2ae73662c35d80e4, processorArchitecture=MSIL">
+      <HintPath>..\packages\SendGrid.SmtpApi.1.3.1\lib\net40\SendGrid.SmtpApi.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="SendGridMail, Version=6.3.4.0, Culture=neutral, PublicKeyToken=4f047e93159395ca, processorArchitecture=MSIL">
+      <HintPath>..\packages\Sendgrid.6.3.4\lib\SendGridMail.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Serilog, Version=2.0.0.0, Culture=neutral, PublicKeyToken=24c2f752a8e58a10, processorArchitecture=MSIL">
+      <HintPath>..\packages\Serilog.3.1.1\lib\netstandard2.0\Serilog.dll</HintPath>
+    </Reference>
+    <Reference Include="Serilog.Sinks.Console, Version=5.0.0.0, Culture=neutral, PublicKeyToken=24c2f752a8e58a10, processorArchitecture=MSIL">
+      <HintPath>..\packages\Serilog.Sinks.Console.5.0.0\lib\netstandard2.0\Serilog.Sinks.Console.dll</HintPath>
+    </Reference>
+    <Reference Include="Serilog.Sinks.File, Version=5.0.0.0, Culture=neutral, PublicKeyToken=24c2f752a8e58a10, processorArchitecture=MSIL">
+      <HintPath>..\packages\Serilog.Sinks.File.5.0.0\lib\net45\Serilog.Sinks.File.dll</HintPath>
+    </Reference>
+    <Reference Include="SharpCompress, Version=0.23.0.0, Culture=neutral, PublicKeyToken=afb0a02973931d96, processorArchitecture=MSIL">
+      <HintPath>..\packages\SharpCompress.0.23.0\lib\net45\SharpCompress.dll</HintPath>
+    </Reference>
+    <Reference Include="Sigil, Version=4.5.1.0, Culture=neutral, PublicKeyToken=2d06c3494341c8ab, processorArchitecture=MSIL">
+      <HintPath>..\packages\Sigil.4.5.1\lib\net45\Sigil.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Swashbuckle.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=cd1bb07a5ac7c7bc, processorArchitecture=MSIL">
+      <HintPath>..\packages\Swashbuckle.Core.5.6.0\lib\net40\Swashbuckle.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Diagnostics.DiagnosticSource, Version=7.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Diagnostics.DiagnosticSource.7.0.2\lib\netstandard2.0\System.Diagnostics.DiagnosticSource.dll</HintPath>
+    </Reference>
+    <Reference Include="System.IO.Compression" />
+    <Reference Include="System.Management" />
+    <Reference Include="System.Memory, Version=4.0.1.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Memory.4.5.5\lib\net461\System.Memory.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http, Version=4.1.1.3, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Net.Http.4.3.4\lib\net46\System.Net.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest" />
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Numerics.Vectors, Version=4.1.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Numerics.Vectors.4.5.0\lib\net46\System.Numerics.Vectors.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.Caching" />
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.6.0.0\lib\net461\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.InteropServices.RuntimeInformation, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.InteropServices.RuntimeInformation.4.3.0\lib\net45\System.Runtime.InteropServices.RuntimeInformation.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Security.Cryptography.Algorithms, Version=4.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Cryptography.Algorithms.4.3.0\lib\net461\System.Security.Cryptography.Algorithms.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.Encoding, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Cryptography.Encoding.4.3.0\lib\net46\System.Security.Cryptography.Encoding.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.Primitives, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Cryptography.Primitives.4.3.0\lib\net46\System.Security.Cryptography.Primitives.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.X509Certificates, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Cryptography.X509Certificates.4.3.0\lib\net461\System.Security.Cryptography.X509Certificates.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Threading.Tasks.Dataflow, Version=4.6.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Threading.Tasks.Dataflow.4.6.0\lib\netstandard1.1\System.Threading.Tasks.Dataflow.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Threading.Tasks.Extensions.4.5.0\lib\portable-net45+win8+wp8+wpa81\System.Threading.Tasks.Extensions.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ValueTuple.4.5.0\lib\netstandard1.0\System.ValueTuple.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Cors, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Cors.5.2.3\lib\net45\System.Web.Cors.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.Helpers.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Http.Cors, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Cors.5.2.3\lib\net45\System.Web.Http.Cors.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Http.Owin, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Owin.5.2.3\lib\net45\System.Web.Http.Owin.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Http.Tracing, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Tracing.5.2.3\lib\net45\System.Web.Http.Tracing.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.3\lib\net45\System.Web.Mvc.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Optimization, Version=1.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.3\lib\net45\System.Web.Razor.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="WebActivatorEx, Version=2.0.0.0, Culture=neutral, PublicKeyToken=7b26dc2a43f6a0d4, processorArchitecture=MSIL">
+      <HintPath>..\packages\WebActivatorEx.2.0\lib\net40\WebActivatorEx.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="WebGrease, Version=1.6.5135.21930, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\WebGrease.1.6.0\lib\WebGrease.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="Z.EntityFramework.Extensions, Version=4.0.58.0, Culture=neutral, PublicKeyToken=59b66d028979105b, processorArchitecture=MSIL">
+      <HintPath>..\packages\Z.EntityFramework.Extensions.4.0.58\lib\net45\Z.EntityFramework.Extensions.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Z.EntityFramework.Plus.EF6, Version=1.12.19.0, Culture=neutral, PublicKeyToken=59b66d028979105b, processorArchitecture=MSIL">
+      <HintPath>..\packages\Z.EntityFramework.Plus.EF6.1.12.19\lib\net45\Z.EntityFramework.Plus.EF6.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Z.Expressions.Eval, Version=3.1.8.0, Culture=neutral, PublicKeyToken=59b66d028979105b, processorArchitecture=MSIL">
+      <HintPath>..\packages\Z.Expressions.Eval.3.1.8\lib\net45\Z.Expressions.Eval.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="System.Net.Http.Formatting">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.3\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.3\lib\net45\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.5.2.3\lib\net45\System.Web.Http.WebHost.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Content\Emails\crawler-finalizado.html" />
+    <EmbeddedResource Include="Content\Emails\support-ticket-update.html" />
+    <Content Include="Content\Emails\desvincular-usuario.html" />
+    <Content Include="Content\Emails\recovery-password.html" />
+    <Content Include="Content\Emails\recuperar-senha.html" />
+    <Content Include="Content\Emails\unlink-user.html" />
+    <Content Include="Content\Emails\user-linked.html" />
+    <Content Include="Content\Emails\vincular-usuario.html" />
+    <Content Include="Content\Emails\changes-monitoring-item.html" />
+    <Content Include="Core\Compression\Snappy\lib\win\snappy32.dll" />
+    <Content Include="Core\Compression\Snappy\lib\win\snappy64.dll" />
+    <Content Include="Core\Compression\Zstandard\lib\win\libzstd.dll" />
+    <Content Include="Dependencias\Intelicraft.Common.xml" />
+    <Content Include="Gerar e Publicar Nuget.txt" />
+    <Content Include="mongocrypt.dll" />
+    <Content Include="XML\Intelicraft.Common.xml" />
+    <Content Include="XML\Predify.Models.XML" />
+    <EmbeddedResource Include="Content\Emails\confirmar-email.html" />
+    <Content Include="App_Data\XmlDocument.xml" />
+    <Content Include="Configuration\PagSeguroConfig.xml" />
+    <Content Include="ApplicationInsights.config" />
+    <EmbeddedResource Include="Resources\HeadersMonitoring\TranslateHeadersEN_US.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>TranslateHeadersEN_US.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\HeadersMonitoring\TranslateHeadersES_ES.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>TranslateHeadersES_ES.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\HeadersMonitoring\TranslateHeadersPT_BR.resx" />
+    <EmbeddedResource Include="Resources\LocalizationTXT.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>LocalizationTXT.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="Configurações.txt" />
+    <Content Include="Content\bootstrap-responsive.css" />
+    <Content Include="Content\bootstrap-responsive.min.css" />
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\images\glyphicons-halflings-white.png" />
+    <Content Include="Content\images\glyphicons-halflings.png" />
+    <Content Include="Content\Files\Precificação_Dinamica.csv" />
+    <None Include="Dependencias\Intelicraft.Common.dll" />
+    <Content Include="Dependencias\Intelicraft.ERP.dll" />
+    <Content Include="Global.asax" />
+    <Content Include="libman.json" />
+    <Content Include="libmongocrypt.so" />
+    <Content Include="libmongocrypt.dylib" />
+    <None Include="Properties\PublishProfiles\Back Homologação.pubxml" />
+    <None Include="Properties\PublishProfiles\Bradesco-Back.pubxml" />
+    <None Include="Properties\PublishProfiles\Bradesco.pubxml" />
+    <None Include="Properties\PublishProfiles\CustomProfile.pubxml" />
+    <None Include="Properties\PublishProfiles\Homolog.pubxml" />
+    <None Include="Properties\PublishProfiles\HOMOLOGACAO.pubxml" />
+    <None Include="Properties\PublishProfiles\Homologação.pubxml" />
+    <None Include="Properties\PublishProfiles\Nova-Producao-BACK.pubxml" />
+    <None Include="Properties\PublishProfiles\Pre Produção Back.pubxml" />
+    <None Include="Properties\PublishProfiles\Pre-Produção.pubxml" />
+    <None Include="Properties\PublishProfiles\Producao - Back.pubxml" />
+    <None Include="Properties\PublishProfiles\Produção.pubxml" />
+    <None Include="Scripts\jquery-1.8.3.intellisense.js" />
+    <Content Include="Dependencias\libadonetHDB.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Dependencias\libadonetHDB32.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\jquery-1.8.3.js" />
+    <Content Include="Scripts\jquery-1.8.3.min.js" />
+    <Content Include="Scripts\knockout-2.2.1.debug.js" />
+    <Content Include="Scripts\knockout-2.2.1.js" />
+    <Content Include="Web.config" />
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.MOCK.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\DeflateCompressionAttribute.cs" />
+    <Compile Include="App_Start\EmailsTemplate.cs" />
+    <Compile Include="App_Start\JilFormatter.cs" />
+    <Compile Include="App_Start\MindssCacher.cs" />
+    <Compile Include="App_Start\SwaggerConfig.cs" />
+    <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Classes\NumberSegment.cs" />
+    <Compile Include="Classes\OAuth.cs" />
+    <Compile Include="Classes\PriceCalculation.cs" />
+    <Compile Include="Clients\Bradesco\Services\BradescoHttpClient.cs" />
+    <Compile Include="Clients\Bradesco\Services\BradescoHttpRestClient.cs" />
+    <Compile Include="Clients\Bradesco\Services\BradescoService.cs" />
+    <Compile Include="Clients\Bradesco\Models\BradescoTokenModel.cs" />
+    <Compile Include="Clients\Bradesco\Services\OpenAPI\OpenAPIConnector.cs" />
+    <Compile Include="Classes\StaticMethods.cs" />
+    <Compile Include="Clients\Bradesco\Models\UserOpenAPI.cs" />
+    <Compile Include="Clients\Bradesco\Controllers\UsuarioBradescoController.cs" />
+    <Compile Include="Clients\Inter\Controllers\InterController.cs" />
+    <Compile Include="Clients\Inter\FrontModels\InterScheduleParameters.cs" />
+    <Compile Include="Clients\Inter\FrontModels\InterScheduleAnswer.cs" />
+    <Compile Include="Clients\Inter\Models\InterCompMeliuzExtension.cs" />
+    <Compile Include="Clients\Inter\Models\InterCompMeliuzModel.cs" />
+    <Compile Include="Clients\Inter\Models\InterElasticSearchListModel.cs" />
+    <Compile Include="Clients\Inter\Models\InterElasticSearchModel.cs" />
+    <Compile Include="Clients\Inter\Models\InterScheduleModel.cs" />
+    <Compile Include="Clients\Inter\Services\InterService.cs" />
+    <Compile Include="Clients\Movida\Models\Requests\MOVIDABasic_Request.cs" />
+    <Compile Include="Clients\Movida\Models\Responses\MovidaBasicPaginated_Answer.cs" />
+    <Compile Include="Clients\Movida\Models\Responses\MovidaBasic_Answer.cs" />
+    <Compile Include="Clients\Movida\MovidaService.cs" />
+    <Compile Include="Clients\Sebrae\Controllers\WebhookSebraeController.cs" />
+    <Compile Include="Clients\Sebrae\Models\AlteracaoPlanoModel.cs" />
+    <Compile Include="Clients\Sebrae\Models\CancelamentoModel.cs" />
+    <Compile Include="Clients\Sebrae\Models\ConfirmacaoCancelamentoModel.cs" />
+    <Compile Include="Clients\Sebrae\Models\DadosPagamentoModel.cs" />
+    <Compile Include="Clients\Sebrae\Models\AssinaturaModel.cs" />
+    <Compile Include="Clients\Sebrae\Models\DadosUsuarioModel.cs" />
+    <Compile Include="Clients\Sebrae\Models\ResponseModel.cs" />
+    <Compile Include="Clients\Sebrae\Models\WebhookModel.cs" />
+    <Compile Include="Clients\Sebrae\SebraeServiceHTTP.cs" />
+    <Compile Include="Clients\Sebrae\SebreaService.cs" />
+    <Compile Include="Controllers\Base\DssApiController.cs" />
+    <Compile Include="Controllers\AdministrationController.cs" />
+    <Compile Include="Controllers\ConfiguracoesController.cs" />
+    <Compile Include="Controllers\DinPreRulesController.cs" />
+    <Compile Include="Controllers\JobsController.cs" />
+    <Compile Include="Controllers\PredicaoPrecoController.cs" />
+    <Compile Include="Controllers\ElasticidadeController.cs" />
+    <Compile Include="Controllers\GatewayPagamento\PagSeguroController.cs" />
+    <Compile Include="Controllers\ImportarDadosPorReferenciaController.cs" />
+    <Compile Include="Controllers\IntegracaoConfigController.cs" />
+    <Compile Include="Controllers\IntegracaoERPController.cs" />
+    <Compile Include="Controllers\LicencaController.cs" />
+    <Compile Include="Controllers\OnboardingController.cs" />
+    <Compile Include="Controllers\SAP\SAPNotificationsController.cs" />
+    <Compile Include="Controllers\SAP\SAPOauthModel.cs" />
+    <Compile Include="Controllers\GatewayPagamento\PaypalController.cs" />
+    <Compile Include="Controllers\TasksProgressionController.cs" />
+    <Compile Include="Controllers\Testes\PrepareTags.cs" />
+    <Compile Include="Controllers\Testes\TesteSeyconel.cs" />
+    <Compile Include="Controllers\V2_1\Access\ValidationController.cs" />
+    <Compile Include="Controllers\V2_1\Category\CategoryController.cs" />
+    <Compile Include="Controllers\V2_1\Clients\Petrobahia\PetrobahiaAlcadaController.cs" />
+    <Compile Include="Controllers\V2_1\Clients\Petrobahia\PetrobahiaController.cs" />
+    <Compile Include="Controllers\V2_1\Clients\Bosch\BoschController.cs" />
+    <Compile Include="Controllers\V2_1\Company\CompanyController.cs" />
+    <Compile Include="Controllers\V2_1\Custos\CostController.cs" />
+    <Compile Include="Controllers\V2_1\Custos\ProductMaterialCostController.cs" />
+    <Compile Include="Controllers\V2_1\Custos\ProductCostController.cs" />
+    <Compile Include="Controllers\V2_1\Custos\CostFixedController.cs" />
+    <Compile Include="Controllers\V2_1\Access\ResourceGroupController.cs" />
+    <Compile Include="Controllers\V2_1\Custos\VariableCostsController.cs" />
+    <Compile Include="Controllers\V2_1\DynamicPricing\DynamicPricingController.cs" />
+    <Compile Include="Controllers\V2_1\Enterprise\Enterprise_AprioriController.cs" />
+    <Compile Include="Controllers\V2_1\Enterprise\Enterprise_BIController.cs" />
+    <Compile Include="Controllers\V2_1\Enterprise\Pricing\Enterprise_PricingController_Fujioka .cs" />
+    <Compile Include="Controllers\V2_1\Enterprise\Pricing\Enterprise_PricingController.cs" />
+    <Compile Include="Controllers\V2_1\Enterprise\Enterprise_ChurnController.cs" />
+    <Compile Include="Controllers\V2_1\Enterprise\Enterprise_CompanyController.cs" />
+    <Compile Include="Controllers\V2_1\Enterprise\Enterprise_Policy_Margin_PositioningController.cs" />
+    <Compile Include="Controllers\V2_1\Enterprise\Enterprise_SaleTaxController.cs" />
+    <Compile Include="Controllers\V2_1\Enterprise\Enterprise_Elasticity_Controller.cs" />
+    <Compile Include="Controllers\V2_1\Enterprise\Enterprise_DashboardController.cs" />
+    <Compile Include="Controllers\V2_1\Enterprise\Enterprise_Price_GroupsController.cs" />
+    <Compile Include="Controllers\V2_1\Enterprise\Enterprise_DistributionCenterController.cs" />
+    <Compile Include="Controllers\V2_1\Enterprise\Enterprise_Sales_HistoryController.cs" />
+    <Compile Include="Controllers\V2_1\Enterprise\Enterprise_Workflow_ApprovalController.cs" />
+    <Compile Include="Controllers\V2_1\Enterprise\Enterprise_Price_ProjectionController.cs" />
+    <Compile Include="Controllers\V2_1\Enterprise\Enterprise_EventsController.cs" />
+    <Compile Include="Controllers\V2_1\FileUpload\PlanilhaController.cs" />
+    <Compile Include="Controllers\V2_1\Home\HomeController.cs" />
+    <Compile Include="Controllers\V2_1\Integracao\IntegracaoConfigController.cs" />
+    <Compile Include="Controllers\V2_1\Clients\MOVIDAController.cs" />
+    <Compile Include="Controllers\V2_1\Custos\MarketplaceCostController.cs" />
+    <Compile Include="Controllers\V2_1\Market\PricingController.cs" />
+    <Compile Include="Controllers\V2_1\Market\MarketController.cs" />
+    <Compile Include="Controllers\V2_1\Monitoring\MonitoringBatchController.cs" />
+    <Compile Include="Controllers\V2_1\Monitoring\MonitoringItemManualResultController.cs" />
+    <Compile Include="Controllers\V2_1\Monitoring\MonitoringController.cs" />
+    <Compile Include="Controllers\V2_1\Monitoring\MonitoringCrawlerController.cs" />
+    <Compile Include="Controllers\V2_1\Monitoring\MonitoringPredimonitorFiltersController.cs" />
+    <Compile Include="Controllers\V2_1\Monitoring\PrediMonitorController.cs" />
+    <Compile Include="Controllers\V2_1\Precificacao\PrecificacaoGruposPesquisaProdutosController.cs" />
+    <Compile Include="Controllers\V2_1\Precificacao\PrecificacaoGruposPesquisaController.cs" />
+    <Compile Include="Controllers\V2_1\Produtos\ProductMaterialController.cs" />
+    <Compile Include="Controllers\V2_1\Produtos\ProductController.cs" />
+    <Compile Include="Controllers\V2\ViabilidadeV2Controller.cs" />
+    <Compile Include="Controllers\V2\CustoVendaV2Controller.cs" />
+    <Compile Include="Controllers\V2_1\Region\RegionController.cs" />
+    <Compile Include="Controllers\V2_1\Reports\ReportController.cs" />
+    <Compile Include="Controllers\V2_1\Access\ResourceController.cs" />
+    <Compile Include="Controllers\V2_1\Support\Support_TicketController.cs" />
+    <Compile Include="Controllers\V2_1\Utility\PredifyUtilityController.cs" />
+    <Compile Include="Extensions\CategoriaExtensions.cs" />
+    <Compile Include="Extensions\CustoFixoExtensions.cs" />
+    <Compile Include="Extensions\IntegracaoResultadoExtensions.cs" />
+    <Compile Include="Extensions\IQuerableExtensions.cs" />
+    <Compile Include="Extensions\ModelStateExtension.cs" />
+    <Compile Include="Extensions\OnboardingExtensions.cs" />
+    <Compile Include="Extensions\Pre_CompetitorExtensions.cs" />
+    <Compile Include="Extensions\FichaTecnicaExtensions.cs" />
+    <Compile Include="Extensions\InsumoExtensions.cs" />
+    <Compile Include="Extensions\LicencaExtensions.cs" />
+    <Compile Include="Extensions\ProdutoExtensions.cs" />
+    <Compile Include="Extensions\DinPreRulesExtensions.cs" />
+    <Compile Include="Extensions\ProdutoLinkCategoriaExtensions.cs" />
+    <Compile Include="Extensions\TasksProgressionExtensions.cs" />
+    <Compile Include="Extensions\UnidadeMedidaExtensions.cs" />
+    <Compile Include="Extensions\UsuarioExtensions.cs" />
+    <Compile Include="Integrations\ActiveCampaing\ActiveCampaingHTTP.cs" />
+    <Compile Include="Integrations\ActiveCampaing\ActiveCampaingService.cs" />
+    <Compile Include="Integrations\ActiveCampaing\Models\ActiveCampaingAddUpdateResponse.cs" />
+    <Compile Include="Integrations\ActiveCampaing\Models\ActiveCampaingAddCustomFieldValueParentModel.cs" />
+    <Compile Include="Integrations\ActiveCampaing\Models\ActiveCampaingContactAddUpdateParentModel.cs" />
+    <Compile Include="Integrations\ActiveCampaing\Models\ActiveCampaingContactAUParentListModel.cs" />
+    <Compile Include="Integrations\ActiveCampaing\Models\ActiveCampaingContactAddUpdateModel.cs" />
+    <Compile Include="Integrations\ActiveCampaing\Models\ActiveCampaingContactListModel.cs" />
+    <Compile Include="Integrations\ActiveCampaing\Models\ActiveCampaingContactListResponse.cs" />
+    <Compile Include="Integrations\ActiveCampaing\Models\ActiveCampaingContactModel.cs" />
+    <Compile Include="Integrations\ActiveCampaing\Models\ActiveCampaingContactResponse.cs" />
+    <Compile Include="Integrations\ActiveCampaing\Models\ActiveCampaingContactToListModel.cs" />
+    <Compile Include="Integrations\ActiveCampaing\Models\ActiveCampaingAddCustomFieldValueModel.cs" />
+    <Compile Include="Integrations\ActiveCampaing\Models\ActiveCampaingCustomFieldValueModel.cs" />
+    <Compile Include="Integrations\ActiveCampaing\Models\ActiveCampaingAddCustomFieldValuesResponse.cs" />
+    <Compile Include="Integrations\ActiveCampaing\Models\ActiveCampaingGetCustoFieldValuesResponse.cs" />
+    <Compile Include="Models\CalcularCustoVendaModel.cs" />
+    <Compile Include="Models\GatewayPagamentos\Iugu\AssinaturaSubItemRemoveModel.cs" />
+    <Compile Include="Models\GatewayPagamentos\Iugu\AssinaturaUpdateSubitemRemover.cs" />
+    <Compile Include="Models\Monitoring\CepsListModel.cs" />
+    <Compile Include="Models\Monitoring\PredimonitorSearchModel.cs" />
+    <Compile Include="Models\Neighborhood.cs" />
+    <Compile Include="Models\ProductsInfoRule_EnterpriseModel.cs" />
+    <Compile Include="Models\Regioes.cs" />
+    <Compile Include="Models\StreetsModel.cs" />
+    <Compile Include="Models\V2\Enterprise\DS_API_Elasticity_Response.cs" />
+    <Compile Include="Models\V2\Petrobahia\PetrobahiaFiltersModel.cs" />
+    <Compile Include="Models\V2\Petrobahia\PetrobahiaPriceProjectionModel.cs" />
+    <Compile Include="Models\V2\Petrobahia\PetrobahiaPricesProjectionModel.cs" />
+    <Compile Include="Resources\HeadersMonitoring\TranslateHeadersEN_US.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TranslateHeadersEN_US.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\HeadersMonitoring\TranslateHeadersES_ES.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TranslateHeadersES_ES.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\HeadersMonitoring\pt_BR.Designer.cs" />
+    <Compile Include="Resources\LocalizationTXT.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>LocalizationTXT.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Services\Arquivos\Planilha\CustosVariaveisReader.cs" />
+    <Compile Include="Services\Arquivos\Planilha\Model\CustoVariavelModel.cs" />
+    <Compile Include="Services\Arquivos\Planilha\Model\ProdutoCustoModel.cs" />
+    <Compile Include="Services\Arquivos\Planilha\PlanilhaReader.cs" />
+    <Compile Include="Services\IntegracaoResultadoService.cs" />
+    <Compile Include="Services\CustoVendaMeioPagamentoService.cs" />
+    <Compile Include="Services\PredicaoPrecoService.cs" />
+    <Compile Include="Services\ElasticidadeService.cs" />
+    <Compile Include="Services\Importar\V2\TasksManager.cs" />
+    <Compile Include="Services\ProdutoLinkCategoriaService.cs" />
+    <Compile Include="V2_1\Extensions\Custos\CustoVariavelExtensions.cs" />
+    <Compile Include="V2_1\Extensions\Custos\MarketplaceCostExtensions.cs" />
+    <Compile Include="V2_1\Extensions\Custos\ProductMaterialCostExtensions.cs" />
+    <Compile Include="V2_1\Extensions\DynamicPricing\RuleExtensions.cs" />
+    <Compile Include="V2_1\Extensions\DynamicPricing\RuleFollowerExtensions.cs" />
+    <Compile Include="V2_1\Extensions\Enterprise\ApprovalWorkflowExtensions.cs" />
+    <Compile Include="V2_1\Extensions\Enterprise\Apriori\AprioriExtensions.cs" />
+    <Compile Include="V2_1\Extensions\Enterprise\EnterprisePriceProjectionExtension.cs" />
+    <Compile Include="V2_1\Extensions\Enterprise\Event\EventExtensions.cs" />
+    <Compile Include="V2_1\Extensions\GeneralResponse\GeneralResponseExtension.cs" />
+    <Compile Include="Controllers\V2_1\Monitoring\Company_MonitoringCrawlerController.cs" />
+    <Compile Include="V2_1\Extensions\Monitoring\Company_MonitoringCrawlerExtensions.cs" />
+    <Compile Include="V2_1\Extensions\Monitoring\MonitoringCrawlerExtension.cs" />
+    <Compile Include="V2_1\Extensions\Monitoring\MonitoringSearchAPIExtension.cs" />
+    <Compile Include="V2_1\Extensions\Monitoring\MonitoringItemExtensions.cs" />
+    <Compile Include="V2_1\Extensions\Monitoring\Monitoring_ProductMarketResultItemExtensions.cs" />
+    <Compile Include="V2_1\Extensions\Monitoring\FiltersRegionExtension.cs" />
+    <Compile Include="V2_1\Extensions\Precificacao\PreGruposPesquisaExtensions.cs" />
+    <Compile Include="V2_1\Extensions\Precificacao\PreGruposPesquisaProdutosExtensions.cs" />
+    <Compile Include="V2_1\Extensions\PrediMonitor\PrediMonitorCalculateProjectionExtension.cs" />
+    <Compile Include="V2_1\Extensions\PrediMonitor\MonitoringSearchExtension.cs" />
+    <Compile Include="V2_1\Extensions\Produtos\MarketplaceCostExtensions.cs" />
+    <Compile Include="V2_1\Extensions\Support\Support_TicketSubjectExtensions.cs" />
+    <Compile Include="V2_1\Extensions\Support\Support_TicketMessageExtensions.cs" />
+    <Compile Include="V2_1\Extensions\Support\Support_TicketExtensions.cs" />
+    <Compile Include="V2_1\FrontModel\MarketplaceCost\Requests\UpdateMarketplaceCostRequest.cs" />
+    <Compile Include="V2_1\FrontModel\MarketplaceCost\Requests\InsertMarketplaceCostRequest.cs" />
+    <Compile Include="V2_1\FrontModel\MarketplaceCost\Response\MarketplaceCostResponse.cs" />
+    <Compile Include="V2_1\FrontModel\MarketplaceProductCost\Response\MarketplaceProductsCostResponse.cs" />
+    <Compile Include="V2_1\FrontModel\MarketplaceProductCost\Response\MarketplaceProductCostResponse.cs" />
+    <Compile Include="V2_1\Models\Acelen\AcelenSimulationModel.cs" />
+    <Compile Include="V2_1\Models\Acelen\AcelenModel.cs" />
+    <Compile Include="V2_1\Models\Crawler\e_SchedulePriority.cs" />
+    <Compile Include="V2_1\Models\Crawler\e_ScheduleType.cs" />
+    <Compile Include="V2_1\Models\Crawler\ScheduleModel.cs" />
+    <Compile Include="V2_1\Models\DataScienceAPI\FuelPriceResponseModel.cs" />
+    <Compile Include="V2_1\Models\DataScienceAPI\Request\PredifutPreAIPredictRequest.cs" />
+    <Compile Include="V2_1\Models\DataScienceAPI\Request\Predimonitor_ProjectionRequest.cs" />
+    <Compile Include="V2_1\Models\DataScienceAPI\Response\PredifutPreAIPredictResponse.cs" />
+    <Compile Include="V2_1\Models\DataScienceAPI\Response\Predimonitor_ProjectionResponse.cs" />
+    <Compile Include="V2_1\Models\DinamicPrice\Imports\DprImportSKUModel.cs" />
+    <Compile Include="V2_1\Models\DinamicPrice\PreCalculatedRuleModel.cs" />
+    <Compile Include="V2_1\Models\Enterprise\EnterpriseCompanyAffiliateModel.cs" />
+    <Compile Include="V2_1\Models\Enterprise\EnterpriseCompanyAffiliateMapModel.cs" />
+    <Compile Include="V2_1\Models\Enterprise\EnterpriseChurnExportModel.cs" />
+    <Compile Include="V2_1\Models\Enterprise\EnterprisePolicyMarginPositioningExportModel.cs" />
+    <Compile Include="V2_1\Models\Enterprise\EnterprisePolicyMarginPositioningImportModel.cs" />
+    <Compile Include="V2_1\Models\Enterprise\EnterprisePriceProjection\EnterpriseTempPriceProjection.cs" />
+    <Compile Include="V2_1\Models\Enterprise\EnterprisePriceProjection\PriceProjectionExportModel.cs" />
+    <Compile Include="V2_1\Models\Enterprise\PriceGroups_DefaultFilterModel.cs" />
+    <Compile Include="V2_1\Models\Enterprise\PriceGroup\ProjectionWarningModel.cs" />
+    <Compile Include="V2_1\Models\Enterprise\PriceProjection\PricePrijectionExportModel.cs" />
+    <Compile Include="V2_1\Models\Enterprise\PriceProjection_InfoFlagShipModel.cs" />
+    <Compile Include="V2_1\Models\Enterprise\Pricing\PricingListItemPreSelectModel.cs" />
+    <Compile Include="V2_1\Models\Enterprise\Temp\EnterpriseValuesOverrideNeutralZoneMarginTemp.cs" />
+    <Compile Include="V2_1\Models\MongoData\FutureElasticityData.cs" />
+    <Compile Include="V2_1\Models\MongoData\FutureElasticityStatus.cs" />
+    <Compile Include="V2_1\Models\MongoData\Horus_Products.cs" />
+    <Compile Include="V2_1\Models\MongoData\InfoPrice_SaoJoao.cs" />
+    <Compile Include="V2_1\Models\MongoData\LinxFactTicket.cs" />
+    <Compile Include="V2_1\Models\MongoData\Neogrid_Ecoa.cs" />
+    <Compile Include="V2_1\Models\MongoData\Nielsen_BasePeralta.cs" />
+    <Compile Include="V2_1\Models\MongoData\Nielsen_BaseVem.cs" />
+    <Compile Include="V2_1\Models\MongoData\Normalizer_ProductPricesModel.cs" />
+    <Compile Include="V2_1\Models\MongoData\Offline_MercantilNovaEra.cs" />
+    <Compile Include="V2_1\Models\MongoData\SmarketCompetitorModel.cs" />
+    <Compile Include="V2_1\Models\Monitoring\CompanyMonitoringCrawlerGetByIdPayload.cs" />
+    <Compile Include="V2_1\Models\Monitoring\Company_MonitoringCrawlerModel.cs" />
+    <Compile Include="V2_1\Models\Monitoring\CrawlersListExportModel.cs" />
+    <Compile Include="V2_1\Models\Monitoring\MonitoringCrawlerModel.cs" />
+    <Compile Include="V2_1\Models\Monitoring\MonitoringItemPriceAlertModel.cs" />
+    <Compile Include="V2_1\Models\Monitoring\IgnoredMonitoringItemModel.cs" />
+    <Compile Include="V2_1\Models\Monitoring\ChangesMonitoringItemSendEmail.cs" />
+    <Compile Include="V2_1\Models\Monitoring\MonitoringTagExportModel.cs" />
+    <Compile Include="V2_1\Models\Monitoring\MonitoringTagExportModelWithDeflator.cs" />
+    <Compile Include="V2_1\Models\Monitoring\MonitoringTagImportErrorModel.cs" />
+    <Compile Include="V2_1\Models\Monitoring\MonitoringTagImportErrorResponseModel.cs" />
+    <Compile Include="V2_1\Models\Monitoring\MonitoringTagImportFileInfo.cs" />
+    <Compile Include="V2_1\Models\Monitoring\MonitoringTagImportItemsModel .cs" />
+    <Compile Include="V2_1\Models\Monitoring\MonitoringTagImportModel.cs" />
+    <Compile Include="V2_1\Models\Monitoring\PrediMonitorAPI\IndexGeneratorRequest.cs" />
+    <Compile Include="V2_1\Models\Monitoring\PrediMonitorAPI\MonitoringItemResultsStatusModel.cs" />
+    <Compile Include="V2_1\Models\Monitoring\SearchAPI\Request\DataScience_SearchV3Request.cs" />
+    <Compile Include="V2_1\Models\Monitoring\SearchAPI\Request\DataScience_SearchHistoryRequest.cs" />
+    <Compile Include="V2_1\Models\DataScienceAPI\Response\DataScience_EnterpriseEventSimulationRequest.cs" />
+    <Compile Include="V2_1\Models\DataScienceAPI\Response\DataScience_EnterpriseEventSimulationResponse.cs" />
+    <Compile Include="V2_1\Models\Monitoring\SearchAPI\Request\RequestSearchHistoryAPIModel.cs" />
+    <Compile Include="V2_1\Models\Monitoring\SearchAPI\Response\DataScience_GetBrandResponse.cs" />
+    <Compile Include="V2_1\Models\Monitoring\SearchAPI\Response\DataScience_GetCategoryResponse.cs" />
+    <Compile Include="V2_1\Models\Monitoring\SearchAPI\Response\DataScience_GetLinxProductsResponse.cs" />
+    <Compile Include="V2_1\Models\Monitoring\SearchAPI\Response\DataScience_SearchHistoryResponse.cs" />
+    <Compile Include="V2_1\Models\DataScienceAPI\Response\DS_AprioriSimulateResponse.cs" />
+    <Compile Include="V2_1\Models\DinamicPrice\GetRulesModel.cs" />
+    <Compile Include="V2_1\Models\DinamicPrice\PricesToUpdateModel.cs" />
+    <Compile Include="V2_1\Models\DinamicPrice\ValueOverridesModel.cs" />
+    <Compile Include="V2_1\Models\ElasticSearch\ElasticGroupBase.cs" />
+    <Compile Include="V2_1\Models\ElasticSearch\ElasticBatchJson_Price_V1_Response.cs" />
+    <Compile Include="V2_1\Models\ElasticSearch\ElasticBatchJSon_Products_V1_Request.cs" />
+    <Compile Include="V2_1\Models\ElasticSearch\ElasticBatchJson_Product_V1_Response.cs" />
+    <Compile Include="V2_1\Models\ElasticSearch\ElasticBatchJson_V1_Request.cs" />
+    <Compile Include="V2_1\Models\ElasticSearch\V2\ElasticBatchJson_Price_Shipping_V2_Response.cs" />
+    <Compile Include="V2_1\Models\Enterprise\PriceProjection_InfoModel.cs" />
+    <Compile Include="V2_1\Models\ElasticSearch\V2\ElasticBatchJson_Price_V2_Response.cs" />
+    <Compile Include="V2_1\Models\ElasticSearch\V2\ElasticBatchJson_Product_V2_Response.cs" />
+    <Compile Include="V2_1\Models\ElasticSearch\V2\ElasticBatchJson_V2_Request.cs" />
+    <Compile Include="V2_1\Models\ElasticSearch\V2\ElasticGroup_V2Base.cs" />
+    <Compile Include="V2_1\Models\Monitoring\ImportMonitoringItemModel.cs" />
+    <Compile Include="V2_1\Models\Monitoring\MonitoringProductModel.cs" />
+    <Compile Include="V2_1\Models\Monitoring\MonitoringElasticSearchResultModel.cs" />
+    <Compile Include="V2_1\Models\Monitoring\MonitoringReportModel.cs" />
+    <Compile Include="V2_1\Models\Monitoring\SearchAPI\Response\SearchHistoryAPIModelResponse.cs" />
+    <Compile Include="V2_1\Models\Monitoring\SearchAPI\SearchAPIResultModels.cs" />
+    <Compile Include="V2_1\Models\Monitoring\SearchAPI\RequestSearchAPIModel.cs" />
+    <Compile Include="V2_1\Models\PrediMonitor\EstadoModel.cs" />
+    <Compile Include="V2_1\Models\PrediMonitor\PrediMonitorItemGroupModel.cs" />
+    <Compile Include="V2_1\Models\PrediMonitor\PrediMonitorProductModel.cs" />
+    <Compile Include="V2_1\Repositories\IUsersAfiliatePermissionsRepository.cs" />
+    <Compile Include="V2_1\Repositories\UsersAfiliatePermissionsRepository.cs" />
+    <Compile Include="V2_1\Services\Acelen\AcelenService.cs" />
+    <Compile Include="V2_1\Services\Categoria\CategoriaService.cs" />
+    <Compile Include="V2_1\Services\Clientes\Bosch\BoschBrandsService.cs" />
+    <Compile Include="V2_1\Services\Clientes\Bosch\BoschRelatorioService.cs" />
+    <Compile Include="V2_1\Services\Clientes\Petrobahia\Importacao\PetrobahiaCostHistoryReader.cs" />
+    <Compile Include="V2_1\Services\Clientes\Petrobahia\Importacao\PetrobahiaSalesHistoryReader.cs" />
+    <Compile Include="V2_1\Services\Clientes\Petrobahia\Extensions\PetrobahiaPricesProjectionExtensions.cs" />
+    <Compile Include="V2_1\Services\Clientes\Petrobahia\Importacao\PlanilhaCostHistory.cs" />
+    <Compile Include="V2_1\Services\Clientes\Petrobahia\Importacao\PlanilhaSalesHistory.cs" />
+    <Compile Include="V2_1\Services\Clientes\Petrobahia\PetrobahiaCalculateService.cs" />
+    <Compile Include="V2_1\Services\Clientes\Petrobahia\PetrobahiaCostsHistoryService.cs" />
+    <Compile Include="V2_1\Services\Clientes\Petrobahia\PetrobahiaPrecoMedioService.cs" />
+    <Compile Include="V2_1\Services\Clientes\Petrobahia\PetrobahiaAlcadaService.cs" />
+    <Compile Include="V2_1\Extensions\Clientes\Bosch\BoschExtensions.cs" />
+    <Compile Include="V2_1\Models\Clients\Bosch\BoschElasticSearchModel.cs" />
+    <Compile Include="V2_1\Models\Clients\Bosch\Bosch_Product_Group_Model.cs" />
+    <Compile Include="V2_1\Models\ElasticSearch\ElasticSearchPriceModel.cs" />
+    <Compile Include="V2_1\Models\ElasticSearch\ElasticSearchProductModel.cs" />
+    <Compile Include="V2_1\Services\Clientes\Bosch\BoschPartNumbersService.cs" />
+    <Compile Include="V2_1\Extensions\Custos\CustoFixo_GrupoItem_SYSExtensions.cs" />
+    <Compile Include="V2_1\Extensions\Custos\CustoFixo_GrupoItemValorExtensions.cs" />
+    <Compile Include="V2_1\Extensions\Custos\CustoFixo_Grupo_SYSExtensions.cs" />
+    <Compile Include="V2_1\Extensions\Custos\CustoFixo_GrupoExtensions.cs" />
+    <Compile Include="V2_1\Extensions\Custos\CustoExtensions.cs" />
+    <Compile Include="V2_1\Extensions\Custos\CustoFixo_GrupoItemExtensions.cs" />
+    <Compile Include="V2_1\Extensions\Custos\ProductCostExtensions.cs" />
+    <Compile Include="V2_1\Extensions\Acessos\GrupoRecursoExtension.cs" />
+    <Compile Include="V2_1\Extensions\Integracao\ProductIntegrationExtensions.cs" />
+    <Compile Include="V2_1\Extensions\Market\Product_MarketExtensions.cs" />
+    <Compile Include="V2_1\Extensions\Produtos\FichaTecnicaInsumoExtensions.cs" />
+    <Compile Include="V2_1\Extensions\Produtos\ProdutoExtensions.cs" />
+    <Compile Include="Models\AssinaturaRequestModel.cs" />
+    <Compile Include="Models\Precificacao\Pre_ConfigModel.cs" />
+    <Compile Include="Models\Pre_CompetitorModel.cs" />
+    <Compile Include="Models\DinPreRulesModels.cs" />
+    <Compile Include="Models\FornecedorPrecoModel.cs" />
+    <Compile Include="Models\GatewayPagamentos\Iugu\FaturaRetornoModel.cs" />
+    <Compile Include="Models\GatewayPagamentos\PayPal\PaypalAcessoRetornoModel.cs" />
+    <Compile Include="Models\GatewayPagamentos\PayPal\PaypalBaseModel.cs" />
+    <Compile Include="Models\GatewayPagamentos\PayPal\PaypalDadoClienteMinModel.cs" />
+    <Compile Include="Models\GatewayPagamentos\PayPal\PaypalDadosPaganteModel.cs" />
+    <Compile Include="Models\GatewayPagamentos\PayPal\PaypalEmailModel.cs" />
+    <Compile Include="Models\GatewayPagamentos\PayPal\PaypalEnderecoEnvioModel.cs" />
+    <Compile Include="Models\GatewayPagamentos\PayPal\PaypalEnderecoModel.cs" />
+    <Compile Include="Models\GatewayPagamentos\PayPal\PaypalBillingAgreementEnvioModel.cs" />
+    <Compile Include="Models\GatewayPagamentos\PayPal\PaypalBillingAgreementRetornoModel.cs" />
+    <Compile Include="Models\GatewayPagamentos\PayPal\PaypalBillingAgreementTokenEntradaModel.cs" />
+    <Compile Include="Models\GatewayPagamentos\PayPal\PaypalBillingAgreementTokenRetornoModel.cs" />
+    <Compile Include="Models\GatewayPagamentos\PayPal\PaypalErroDetalhe.cs" />
+    <Compile Include="Models\GatewayPagamentos\PayPal\PaypalFaturaEnvio.cs" />
+    <Compile Include="Models\GatewayPagamentos\PayPal\PaypalItemModel.cs" />
+    <Compile Include="Models\GatewayPagamentos\PayPal\PaypalLinkModel.cs" />
+    <Compile Include="Models\GatewayPagamentos\PayPal\PaypalLinkRedirecionamentoModel.cs" />
+    <Compile Include="Models\GatewayPagamentos\PayPal\PaypalListaItemModel.cs" />
+    <Compile Include="Models\GatewayPagamentos\PayPal\PaypalMercanteModel.cs" />
+    <Compile Include="Models\GatewayPagamentos\PayPal\PaypalMetodoPagamentoModel.cs" />
+    <Compile Include="Models\GatewayPagamentos\PayPal\PaypalNotaModel.cs" />
+    <Compile Include="Models\GatewayPagamentos\PayPal\PaypalPagamentoEnvioModel.cs" />
+    <Compile Include="Models\GatewayPagamentos\PayPal\PaypalPagamentoOpcaoModel.cs" />
+    <Compile Include="Models\GatewayPagamentos\PayPal\PaypalPagamentoRetornoModel.cs" />
+    <Compile Include="Models\GatewayPagamentos\PayPal\PaypalPaganteModel.cs" />
+    <Compile Include="Models\GatewayPagamentos\PayPal\PaypalPlanoModel.cs" />
+    <Compile Include="Models\GatewayPagamentos\PayPal\PaypalPreferenciasModel.cs" />
+    <Compile Include="Models\GatewayPagamentos\PayPal\PaypalRecursoModel.cs" />
+    <Compile Include="Models\GatewayPagamentos\PayPal\PaypalRecursoQuantidadeModel.cs" />
+    <Compile Include="Models\GatewayPagamentos\PayPal\PaypalTokenEnvioModel.cs" />
+    <Compile Include="Models\GatewayPagamentos\PayPal\PaypalTransacaoModel.cs" />
+    <Compile Include="Models\GatewayPagamentos\PayPal\PaypalTransacaoQuantidadeDetalheModel.cs" />
+    <Compile Include="Models\GatewayPagamentos\PayPal\PaypalTransacaoValoresDetalheModel.cs" />
+    <Compile Include="Models\GatewayPagamentos\PayPal\PaypalTransacaoValoresModel.cs" />
+    <Compile Include="Models\GatewayPagamentos\PayPal\PaypalWebhookRetornoModel.cs" />
+    <Compile Include="Models\ImportarDados\ConfigCustoInvestimentos.cs" />
+    <Compile Include="Models\ImportarDados\PrimeiraImportacaoModel.cs" />
+    <Compile Include="Models\LicencaModels.cs" />
+    <Compile Include="Models\Pricing\PrecosMercadoModel.cs" />
+    <Compile Include="Models\Pricing\Scrapo\PageableResponse.cs" />
+    <Compile Include="Models\Pricing\Scrapo\ProductStoreName.cs" />
+    <Compile Include="Models\V2\CustoVendaModels.cs" />
+    <Compile Include="Models\V2\GenericModels.cs" />
+    <Compile Include="Models\V2\ViabilidadeModels.cs" />
+    <Compile Include="Services\Arquivos\Planilha\CustoProducao_CustoReader.cs" />
+    <Compile Include="Services\Arquivos\Planilha\ProdutoSeyconel.cs" />
+    <Compile Include="Services\Arquivos\ServerFilesPath.cs" />
+    <Compile Include="Services\CalculosService.cs" />
+    <Compile Include="Services\ConfiguracaoService.cs" />
+    <Compile Include="Services\CustoProducaoFichaTecnicaService.cs" />
+    <Compile Include="Services\CustoProducaoInsumoService.cs" />
+    <Compile Include="Services\EmpresaConfiguracoesService.cs" />
+    <Compile Include="Services\FichaTecnicaService.cs" />
+    <Compile Include="Services\GatewayPagamento\Iugu\IuguException.cs" />
+    <Compile Include="Services\GatewayPagamento\Iugu\IuguFaturaService.cs" />
+    <Compile Include="Services\Importar\ERPs\Bling\BlingService.cs" />
+    <Compile Include="Services\Importar\IntegracaoConfigCustoVariavel.cs" />
+    <Compile Include="Services\Importar\IntegracaoDadosService.cs" />
+    <Compile Include="Services\Importar\IntegracaoConfigService.cs" />
+    <Compile Include="Services\Importar\IntegracaoService.cs" />
+    <Compile Include="Services\Importar\V2\ImportarManager.cs" />
+    <Compile Include="Services\InsumosService.cs" />
+    <Compile Include="Services\OnboardingService.cs" />
+    <Compile Include="Services\PrecificacaoService.cs" />
+    <Compile Include="Services\ProdutoCategoriaService.cs" />
+    <Compile Include="Services\ProdutoService.cs" />
+    <Compile Include="Services\DinPreRulesService.cs" />
+    <Compile Include="Services\SAP\V1\Models\SAPAccountModel.cs" />
+    <Compile Include="Services\SAP\V1\Models\SAPCompanyModel.cs" />
+    <Compile Include="Services\SAP\V1\Models\SAPEntryModel.cs" />
+    <Compile Include="Services\SAP\V1\Models\SAPItemsModel.cs" />
+    <Compile Include="Services\SAP\V1\Models\SAPMarketplaceModel.cs" />
+    <Compile Include="Services\SAP\V1\Models\SAPAddressModel.cs" />
+    <Compile Include="Services\SAP\V1\Models\SAPCreatorModel.cs" />
+    <Compile Include="Services\SAP\V1\Models\SAPNoticeModel.cs" />
+    <Compile Include="Services\SAP\V1\Models\SAPOrderModel.cs" />
+    <Compile Include="Services\SAP\V1\Models\SAPPayloadModel.cs" />
+    <Compile Include="Services\SAP\V1\Models\SAPResponseModel.cs" />
+    <Compile Include="Services\SAP\V1\Models\SAPSubscriptionModel.cs" />
+    <Compile Include="Services\CalcularService.cs" />
+    <Compile Include="Services\CustoProducaoService.cs" />
+    <Compile Include="Services\CustoService.cs" />
+    <Compile Include="Services\GatewayPagamento\Paypal\PaypalAutorizacaoService.cs" />
+    <Compile Include="Services\GatewayPagamento\Paypal\PaypalBaseService.cs" />
+    <Compile Include="Services\GatewayPagamento\Paypal\PaypalBillingAgreementService.cs" />
+    <Compile Include="Services\GatewayPagamento\Paypal\PaypalPagamentoService.cs" />
+    <Compile Include="Services\GatewayPagamento\Paypal\PaypalService.cs" />
+    <Compile Include="Services\GatewayPagamento\Paypal\PaypalTriggerService.cs" />
+    <Compile Include="Services\Importar\Attributos\PropriedadeTituloAttribute.cs" />
+    <Compile Include="Services\Importar\ERPs\ConfigRelacaoCustoInvestimentoService.cs" />
+    <Compile Include="Services\Importar\ERPs\ImportarCustoInvestimento.cs" />
+    <Compile Include="Services\Importar\ERPs\TopCar\ImportarCustoInvestimento.cs" />
+    <Compile Include="Services\Importar\ERPs\TopCar\Models\ContasContabeisModel.cs" />
+    <Compile Include="Services\Importar\Extensions\PropriedadesExtensions.cs" />
+    <Compile Include="Services\Importar\GetCabecalhoServiceBase.cs" />
+    <Compile Include="Services\Importar\ERPs\ImportarCustoFixo.cs" />
+    <Compile Include="Services\Importar\ERPs\ImportarFromERPService.cs" />
+    <Compile Include="Controllers\Base\Importar\ImportarProdutoWrapperBase.cs" />
+    <Compile Include="Controllers\Base\ThirdPartyApiController.cs" />
+    <Compile Include="Controllers\CalcularController.cs" />
+    <Compile Include="Controllers\CodigoController.cs" />
+    <Compile Include="Controllers\CustoController.cs" />
+    <Compile Include="Controllers\CustoFixoController.cs" />
+    <Compile Include="Controllers\CustoFixoTerceiroController.cs" />
+    <Compile Include="Controllers\CustoFixoPropagandaController.cs" />
+    <Compile Include="Controllers\CustoFixoFinanceiroController.cs" />
+    <Compile Include="Controllers\CustoFixoFolhaPessoalItemController.cs" />
+    <Compile Include="Controllers\CustoFixoFolhaPessoalController.cs" />
+    <Compile Include="Controllers\CustoFixoCondominioController.cs" />
+    <Compile Include="Controllers\CustoFixoProlaboreController.cs" />
+    <Compile Include="Controllers\CustoInvestimentoController.cs" />
+    <Compile Include="Controllers\CustoProducaoController.cs" />
+    <Compile Include="Controllers\CustoVendaController.cs" />
+    <Compile Include="Controllers\CustoVendaMeioPagamentoController.cs" />
+    <Compile Include="Controllers\DescontoController.cs" />
+    <Compile Include="Controllers\EmpresaController.cs" />
+    <Compile Include="Controllers\EmpresaMetaController.cs" />
+    <Compile Include="Controllers\EnderecoController.cs" />
+    <Compile Include="Controllers\FluxoProjetadoController.cs" />
+    <Compile Include="Controllers\GatewayPagamento\IuguController.cs" />
+    <Compile Include="Controllers\IntegracaoController.cs" />
+    <Compile Include="Controllers\MigrationController.cs" />
+    <Compile Include="Controllers\PagamentoController.cs" />
+    <Compile Include="Controllers\ParametroCustoFixoController.cs" />
+    <Compile Include="Controllers\ParametroMeioPagamentoController.cs" />
+    <Compile Include="Controllers\PlanoController.cs" />
+    <Compile Include="Controllers\PlanoInstituicaoController.cs" />
+    <Compile Include="Controllers\PlanoItemController.cs" />
+    <Compile Include="Controllers\PrecificacaoController.cs" />
+    <Compile Include="Controllers\ProdutoCategoriaController.cs" />
+    <Compile Include="Controllers\ProdutoController.cs" />
+    <Compile Include="Controllers\RelatorioController.cs" />
+    <Compile Include="Controllers\SistemaController.cs" />
+    <Compile Include="Controllers\Testes\GerarValoresEmpresaController.cs" />
+    <Compile Include="Controllers\Testes\PlanoTesteController.cs" />
+    <Compile Include="Controllers\Testes\MigrarDadosInsumosItensController.cs" />
+    <Compile Include="Controllers\Testes\Teste.cs" />
+    <Compile Include="Controllers\ThirdParty\Planilha\ImportarPlanilhaController.cs" />
+    <Compile Include="Controllers\ThirdParty\TopCar\ImportarOSController.cs" />
+    <Compile Include="Controllers\ThirdParty\TopCar\ImportarProdutosController.cs" />
+    <Compile Include="Controllers\UnidadeMedidaController.cs" />
+    <Compile Include="Controllers\UsuarioController.cs" />
+    <Compile Include="Controllers\ValoresDefaultController.cs" />
+    <Compile Include="Extensions\BaseEmpresaModelExtensions.cs" />
+    <Compile Include="Extensions\ExceptionExtensions.cs" />
+    <Compile Include="Extensions\StringExtensions.cs" />
+    <Compile Include="Extensions\XMLUtilExtensions.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CalcularCustoVendasModels.cs" />
+    <Compile Include="Models\CartaoCreditoModel.cs" />
+    <Compile Include="Models\CepReturnModel.cs" />
+    <Compile Include="Models\CreditorFeesModel.cs" />
+    <Compile Include="Models\CustoFixoFinanceiroItemModels.cs" />
+    <Compile Include="Models\CustoFixoCondominioItemModels.cs" />
+    <Compile Include="Models\CustoFixoFinanceiroModels.cs" />
+    <Compile Include="Models\CustoFixoCondominioModels.cs" />
+    <Compile Include="Models\CustoFixoFolhaPessoalItemModels.cs" />
+    <Compile Include="Models\CustoFixoFolhaPessoalModels.cs" />
+    <Compile Include="Models\CustoFixoItemModels.cs" />
+    <Compile Include="Models\CustoFixoModels.cs" />
+    <Compile Include="Models\CustoFixoProlaboreItemModels.cs" />
+    <Compile Include="Models\CustoFixoProlaboreModels.cs" />
+    <Compile Include="Models\CustoFixoPropagandaItemModels.cs" />
+    <Compile Include="Models\CustoFixoPropagandaModels.cs" />
+    <Compile Include="Models\CustoFixoTerceiroItemModels.cs" />
+    <Compile Include="Models\CustoFixoTerceiroModels.cs" />
+    <Compile Include="Models\CustoInvestimentoItemModels.cs" />
+    <Compile Include="Models\CustoInvestimentoModels.cs" />
+    <Compile Include="Models\CustoModels.cs" />
+    <Compile Include="Models\CustoProducaoFichaTecnicaModels.cs" />
+    <Compile Include="Models\CustoProducaoInsumoModels.cs" />
+    <Compile Include="Models\FluxoProjetadoModels.cs" />
+    <Compile Include="Models\GatewayPagamentos\Iugu\AssinaturaRetornoModel.cs" />
+    <Compile Include="Models\GatewayPagamentos\Iugu\AssinaturaSubItem.cs" />
+    <Compile Include="Models\GatewayPagamentos\Iugu\CriarAssinaturaModel.cs" />
+    <Compile Include="Models\GatewayPagamentos\Iugu\ClienteModel.cs" />
+    <Compile Include="Models\GatewayPagamentos\Iugu\CriarFormaPagamentoModel.cs" />
+    <Compile Include="Models\GatewayPagamentos\Iugu\IuguBaseModel.cs" />
+    <Compile Include="Models\GatewayPagamentos\Iugu\LogModel.cs" />
+    <Compile Include="Models\GatewayPagamentos\Iugu\ReceivedInvoceModel.cs" />
+    <Compile Include="Models\GatewayPagamentos\Iugu\RetornoFormaPagamentoModel.cs" />
+    <Compile Include="Models\GatewaySystemModel.cs" />
+    <Compile Include="Models\HistoricoVendaModel.cs" />
+    <Compile Include="Models\ImportarDados\ConfigCustoFixo.cs" />
+    <Compile Include="Models\ImportarDados\HistoricoProdutoDataModels.cs" />
+    <Compile Include="Models\ImportarDados\HistoricoProdutoModel.cs" />
+    <Compile Include="Models\ImportarDados\IndexFichaTecnicaPlanilhaModel.cs" />
+    <Compile Include="Models\ImportarDados\IndexFuncionarioPlanilhaModel.cs" />
+    <Compile Include="Models\ImportarDados\IndexProdutoPlanilhaModel.cs" />
+    <Compile Include="Models\ImportarDados\ProdutosParaImportarModels.cs" />
+    <Compile Include="Models\ImportarDados\ResultadoImportacaoModel.cs" />
+    <Compile Include="Models\IntegracaoConfigCustoTabelas.cs" />
+    <Compile Include="Models\Interface\ICustoFixoModel.cs" />
+    <Compile Include="Models\ItemModel.cs" />
+    <Compile Include="Models\PagamentoCompradorModels.cs" />
+    <Compile Include="Models\PagamentoModels.cs" />
+    <Compile Include="Models\PagamentoSimplificadoModel.cs" />
+    <Compile Include="Models\PagSeguroModels.cs" />
+    <Compile Include="Models\PagSeguro\AssinaturaRecorrenteRequestModel.cs" />
+    <Compile Include="Models\PagSeguro\PreApprovalResponseModel.cs" />
+    <Compile Include="Models\ParametroCustoInvestimentoModels.cs" />
+    <Compile Include="Models\ParametroImpostoItemModels.cs" />
+    <Compile Include="Models\ParametroImpostoModels.cs" />
+    <Compile Include="Models\PlanoDescontoModels.cs" />
+    <Compile Include="Models\PlanoInstituicaoModels.cs" />
+    <Compile Include="Models\PlanoInstituicaoSimplificadoModel.cs" />
+    <Compile Include="Models\PlanoItemModels.cs" />
+    <Compile Include="Models\PlanoModels.cs" />
+    <Compile Include="Models\PlanoModuloModels.cs" />
+    <Compile Include="Models\Pricing\PrecoMercadoModel.cs" />
+    <Compile Include="Models\Pricing\Scrapo\Address.cs" />
+    <Compile Include="Models\Pricing\Scrapo\Enums.cs" />
+    <Compile Include="Models\Pricing\Scrapo\Product.cs" />
+    <Compile Include="Models\Pricing\Scrapo\Store.cs" />
+    <Compile Include="Models\ProdutoCustoProducaoModels.cs" />
+    <Compile Include="Models\CustoProducaoModels.cs" />
+    <Compile Include="Models\CustoProducaoServicoModels.cs" />
+    <Compile Include="Models\CustoVendaMeioPagamentoModels.cs" />
+    <Compile Include="Models\CustoVendaModels.cs" />
+    <Compile Include="Models\CustoVendaRegimeTributacaoModels.cs" />
+    <Compile Include="Models\EmpresaMetaModels.cs" />
+    <Compile Include="Models\EmpresaModels.cs" />
+    <Compile Include="Models\EnderecoModels.cs" />
+    <Compile Include="Models\Enums.cs" />
+    <Compile Include="Models\ExternalLoginModels.cs" />
+    <Compile Include="Models\FichaTecnicaIndustriaModels.cs" />
+    <Compile Include="Models\FichaTecnicaInsumoModels.cs" />
+    <Compile Include="Models\FichaTecnicaModels.cs" />
+    <Compile Include="Models\FuncionarioModels.cs" />
+    <Compile Include="Models\ParametroMeioPagamentoModels.cs" />
+    <Compile Include="Models\ParametroCustoFixoModels.cs" />
+    <Compile Include="Models\ProdutoCategoriaModels.cs" />
+    <Compile Include="Models\ProdutoImportadoModels.cs" />
+    <Compile Include="Models\PropriedadeModel.cs" />
+    <Compile Include="Models\PublicKeyModel.cs" />
+    <Compile Include="Models\Relatorios\Filtros\FiltroBaseModel.cs" />
+    <Compile Include="Models\Relatorios\Filtros\DataFiltroModel.cs" />
+    <Compile Include="Models\Relatorios\Filtros\OFTFiltro.cs" />
+    <Compile Include="Models\Relatorios\OrcFatTicketMedioModel.cs" />
+    <Compile Include="Models\Relatorios\PassagemVendasModel.cs" />
+    <Compile Include="Models\Relatorios\RelatoriosGerarBaseModel.cs" />
+    <Compile Include="Models\SeasonalityModels.cs" />
+    <Compile Include="Models\ProdutoModels.cs" />
+    <Compile Include="Models\SistemaModels.cs" />
+    <Compile Include="Models\UnidadeMedidaModels.cs" />
+    <Compile Include="Models\UsuarioModels.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Providers\FacebookAuthProvider.cs" />
+    <Compile Include="Providers\GoogleAuthProvider.cs" />
+    <Compile Include="Providers\SimpleAuthorizationServerProvider.cs" />
+    <Compile Include="Providers\SimpleRefreshTokenProvider.cs" />
+    <Compile Include="Results\ChallengeResult.cs" />
+    <Compile Include="Services\Arquivos\Planilha\FichaTecnicaReader.cs" />
+    <Compile Include="Services\Arquivos\Planilha\FuncionarioReader.cs" />
+    <Compile Include="Services\Arquivos\Planilha\ImportarPlanilhaService.cs" />
+    <Compile Include="Services\Arquivos\Planilha\ProdutoReader.cs" />
+    <Compile Include="Services\Arquivos\UploadFileService.cs" />
+    <Compile Include="Services\CustoInvestimentoService.cs" />
+    <Compile Include="Services\CustosFixoService.cs" />
+    <Compile Include="Services\CustoVendaService.cs" />
+    <Compile Include="Services\EmpresaMetaService.cs" />
+    <Compile Include="Services\EmpresaService.cs" />
+    <Compile Include="Services\GatewayPagamento\Iugu\IuguAssinaturaService.cs" />
+    <Compile Include="Services\GatewayPagamento\Iugu\IuguBaseService.cs" />
+    <Compile Include="Services\GatewayPagamento\Iugu\IuguClienteService.cs" />
+    <Compile Include="Models\GatewayPagamentos\Iugu\IuguCustomVariableModel.cs" />
+    <Compile Include="Services\GatewayPagamento\Iugu\IuguFormaPagamentoService.cs" />
+    <Compile Include="Services\GatewayPagamento\Iugu\IuguService.cs" />
+    <Compile Include="Services\GatewayPagamento\Iugu\IuguTriggerService.cs" />
+    <Compile Include="Services\HttpServiceBase.cs" />
+    <Compile Include="Services\Importar\CustoFixoPropriedadesConfigTabelaBase.cs" />
+    <Compile Include="Services\Importar\ERPs\CustoFixoTitulosFromERP.cs" />
+    <Compile Include="Services\Importar\ERPs\ConfigRelacaoCustoService.cs" />
+    <Compile Include="Services\Importar\ERPs\FromERPBase.cs" />
+    <Compile Include="Services\Importar\ERPs\TopCar\BusinessObjects\Base\BoTopCar.cs" />
+    <Compile Include="Services\Importar\ERPs\TopCar\BusinessObjects\BoContasContabeis.cs" />
+    <Compile Include="Services\Importar\ERPs\TopCar\BusinessObjects\BoContasContabeisMovimentacao.cs" />
+    <Compile Include="Services\Importar\ERPs\TopCar\BusinessObjects\BoDocumentosFiscais.cs" />
+    <Compile Include="Services\Importar\ERPs\TopCar\BusinessObjects\BoDocumentosFiscaisItens.cs" />
+    <Compile Include="Services\Importar\ERPs\TopCar\BusinessObjects\BoProdutos.cs" />
+    <Compile Include="Services\Importar\ERPs\TopCar\GetCabecalhoCusto.cs" />
+    <Compile Include="Services\Importar\ERPs\TopCar\GetCustoFixoTitulos.cs" />
+    <Compile Include="Services\Importar\ERPs\TopCar\ImportarCustoFixo.cs" />
+    <Compile Include="Services\Importar\ERPs\TopCar\Models\ContasContabeis .cs" />
+    <Compile Include="Services\Importar\ERPs\TopCar\Models\ContasContabeisMovimentacao.cs" />
+    <Compile Include="Services\Importar\ERPs\TopCar\Models\DocumentosFiscais.cs" />
+    <Compile Include="Services\Importar\ERPs\TopCar\Models\DocumentosFiscaisItens.cs" />
+    <Compile Include="Services\Importar\ERPs\TopCar\Models\Produtos.cs" />
+    <Compile Include="Services\Importar\ERPs\TopCar\Models\TipoAtendimentoDocumentosFiscais.cs" />
+    <Compile Include="Services\Importar\ERPs\TopCar\TopCarContext.cs" />
+    <Compile Include="Services\Importar\ImportarCustoFixoService.cs" />
+    <Compile Include="Services\Importar\ImportarServiceBase.cs" />
+    <Compile Include="Services\Importar\IntegracaoConfigCustoInvestimentosService.cs" />
+    <Compile Include="Services\Importar\IntegracaoConfigCustoValoresService.cs" />
+    <Compile Include="Services\Importar\Models\ConfigValoresBase.cs" />
+    <Compile Include="Services\Importar\Models\ImportarCustoInvestimentoModel.cs" />
+    <Compile Include="Services\Importar\SeletoresService.cs" />
+    <Compile Include="Services\Importar\IntegracaoConfigCustoTabelasService.cs" />
+    <Compile Include="Services\LicencaService.cs" />
+    <Compile Include="Services\PagamentoService.cs" />
+    <Compile Include="Services\ParametroCustoFixoService.cs" />
+    <Compile Include="Services\ParametroCustoInvestimentoService.cs" />
+    <Compile Include="Services\PlanoDescontoService.cs" />
+    <Compile Include="Services\PlanoInsttituicaoService.cs" />
+    <Compile Include="Services\PlanoItemService.cs" />
+    <Compile Include="Services\Pre_Inteligente_Campos_Service.cs" />
+    <Compile Include="Services\Relatorios\Orcamento_Faturamento_TicketMedio.cs" />
+    <Compile Include="Services\Relatorios\PassagensVendas.cs" />
+    <Compile Include="Services\Relatorios\RelatorioBaseService.cs" />
+    <Compile Include="Services\Relatorios\relatorioManagerService.cs" />
+    <Compile Include="Services\Relatorios\relatorioRespostaModel.cs" />
+    <Compile Include="Services\SAP\V1\Models\SAPUserAttributesModel.cs" />
+    <Compile Include="Services\SAP\V1\Models\SAPUserModel.cs" />
+    <Compile Include="Services\SAP\V1\SAPAccountNotFoundException.cs" />
+    <Compile Include="Services\SAP\V1\SAPAuthorizationAttibute.cs" />
+    <Compile Include="Services\SAP\V1\SAPConfigurationErrorException.cs" />
+    <Compile Include="Services\SAP\V1\SAPException.cs" />
+    <Compile Include="Services\SAP\V1\SAPForbiddenException.cs" />
+    <Compile Include="Services\SAP\V1\SAPHttpCall.cs" />
+    <Compile Include="Services\SAP\V1\SAPNotAuthorizedException.cs" />
+    <Compile Include="Services\SAP\V1\SAPOAuth.cs" />
+    <Compile Include="Services\SAP\V1\SAPServiceBase.cs" />
+    <Compile Include="Services\SAP\V1\SAPSubscriptionService.cs" />
+    <Compile Include="Services\SAP\V1\SAPUserNotFoundException.cs" />
+    <Compile Include="Services\SAP\V1\SAPUserService.cs" />
+    <Compile Include="Services\ServiceBase.cs" />
+    <Compile Include="Services\SistemaService.cs" />
+    <Compile Include="Services\TasksProgressionService.cs" />
+    <Compile Include="Services\UsuarioService.cs" />
+    <Compile Include="V2_1\Extensions\Acessos\RecursoExtension.cs" />
+    <Compile Include="V2_1\FrontModel\Products\Requests\Product_Request.cs" />
+    <Compile Include="V2_1\Services\Amazon\AmazonS3.cs" />
+    <Compile Include="V2_1\Services\Clientes\Petrobahia\PetrobahiaPremioDescontoService.cs" />
+    <Compile Include="V2_1\Services\Clientes\Petrobahia\PetrobahiaPriceGroupsService.cs" />
+    <Compile Include="V2_1\Services\Clientes\Petrobahia\PetrobahiaPricesProjectionService.cs" />
+    <Compile Include="V2_1\Services\Clientes\Petrobahia\PetrobahiaSalesHistoryService.cs" />
+    <Compile Include="V2_1\Services\Clientes\Petrobahia\PetrobahiaValueOverridesService.cs" />
+    <Compile Include="V2_1\Services\ContextServiceBase.cs" />
+    <Compile Include="V2_1\Services\Custos\CustoFixo_GrupoItem_SYSService.cs" />
+    <Compile Include="V2_1\Services\Custos\CustoFixo_GrupoItemService.cs" />
+    <Compile Include="V2_1\Services\Custos\CustoFixo_Grupo_SYSService.cs" />
+    <Compile Include="V2_1\Services\Custos\CustoFixo_GrupoService.cs" />
+    <Compile Include="V2_1\Services\Custos\CustoFixo_GrupoItemValorService.cs" />
+    <Compile Include="V2_1\Services\Custos\CustoService.cs" />
+    <Compile Include="Services\V2\CustoVendaService.cs" />
+    <Compile Include="V2_1\Services\Custos\MarketplaceProductCostService.cs" />
+    <Compile Include="V2_1\Services\Custos\MarketplaceCostService.cs" />
+    <Compile Include="V2_1\Services\Custos\CostCategoryService.cs" />
+    <Compile Include="V2_1\Services\Custos\ProductCostService.cs" />
+    <Compile Include="V2_1\Services\Custos\ProductMaterialCostService.cs" />
+    <Compile Include="V2_1\Services\DataInsightAPI\DataInsightService.cs" />
+    <Compile Include="V2_1\Services\DataScienceAPI\HttpDataScienceAPI.cs" />
+    <Compile Include="V2_1\Services\DinamicPricing\Base\DinamicPricingServiceBase.cs" />
+    <Compile Include="V2_1\Services\DinamicPricing\Base\DinPreConditionServiceBase.cs" />
+    <Compile Include="V2_1\Services\DinamicPricing\DinPreRule_DefautlFilter_ValueService.cs" />
+    <Compile Include="V2_1\Services\DinamicPricing\DinPreRule_FollowerService.cs" />
+    <Compile Include="V2_1\Services\DinamicPricing\DinPreRule_Cond_ValueService.cs" />
+    <Compile Include="V2_1\Services\DinamicPricing\DinPreRule_ConditionService.cs" />
+    <Compile Include="V2_1\Services\DinamicPricing\DinPreRuleService.cs" />
+    <Compile Include="V2_1\Services\Email\EmailService.cs" />
+    <Compile Include="V2_1\Services\Empresa\EmpresaConfiguracaoService.cs" />
+    <Compile Include="V2_1\Services\Empresa\EmpresaService.cs" />
+    <Compile Include="V2_1\Services\Enterprise\Apriori\Base\EnterpriseAprioriResultGroupServiceBase.cs" />
+    <Compile Include="V2_1\Services\Enterprise\Apriori\Base\EnterpriseAprioriResultItemServiceBase.cs" />
+    <Compile Include="V2_1\Services\Enterprise\Apriori\EnterpriseAprioriResultGroupService.cs" />
+    <Compile Include="V2_1\Services\Enterprise\Apriori\EnterpriseAprioriResultItemService.cs" />
+    <Compile Include="V2_1\Services\Enterprise\Base\EnterpriseCalculateServiceBase.cs" />
+    <Compile Include="V2_1\Services\Enterprise\Base\EnterpriseCrossElasticityServiceBase.cs" />
+    <Compile Include="V2_1\Services\Enterprise\Base\EnterpriseElasticityServiceBase.cs" />
+    <Compile Include="V2_1\Services\Enterprise\Base\EnterprisePriceGroups_FilterServiceBase.cs" />
+    <Compile Include="V2_1\Services\Enterprise\Elasticity\EnterpriseElasticityConfigurationService.cs" />
+    <Compile Include="V2_1\Services\Enterprise\Elasticity\EnterpriseFutureElasticityMongo.cs" />
+    <Compile Include="V2_1\Services\Enterprise\EnterpriseChurnService.cs" />
+    <Compile Include="V2_1\Services\Enterprise\Enterprise_BIService.cs" />
+    <Compile Include="V2_1\Services\Enterprise\EnterpriseHistoryCalculateGroupServices.cs" />
+    <Compile Include="V2_1\Services\Enterprise\Pricing\EnterprisePricingService_Fujioka.cs" />
+    <Compile Include="V2_1\Services\Enterprise\Pricing\EnterprisePricingService.cs" />
+    <Compile Include="V2_1\Services\Enterprise\Enterprise_Policy_Margin_PositioningService.cs" />
+    <Compile Include="V2_1\Services\Enterprise\Prod\EnterpriseFutureElasticity.cs" />
+    <Compile Include="V2_1\Services\Enterprise\Prod\EnterprisePriceGroupsExcelFilesService.cs" />
+    <Compile Include="V2_1\Services\Enterprise\Prod\EnterprisePriceProjectionWorkflowService.cs" />
+    <Compile Include="V2_1\Services\Enterprise\EnterpriseSaleTaxService.cs" />
+    <Compile Include="V2_1\Services\Enterprise\EnterpriseDistributionCenterService.cs" />
+    <Compile Include="V2_1\Services\Enterprise\Events\Base\EnterpriseEventCrowdingServiceBase.cs" />
+    <Compile Include="V2_1\Services\Enterprise\Events\Base\EnterpriseEventCrowdingTicketServiceBase.cs" />
+    <Compile Include="V2_1\Services\Enterprise\Events\Base\EnterpriseEventHistoryServiceBase.cs" />
+    <Compile Include="V2_1\Services\Enterprise\Events\Base\EnterpriseEventPlaceServiceBase.cs" />
+    <Compile Include="V2_1\Services\Enterprise\Events\Base\EnterpriseEventSectorServiceBase.cs" />
+    <Compile Include="V2_1\Services\Enterprise\Events\Base\EnterpriseEventSectorReleaseServiceBase.cs" />
+    <Compile Include="V2_1\Services\Enterprise\Events\Base\EnterpriseEventSectorTicketsServiceBase.cs" />
+    <Compile Include="V2_1\Services\Enterprise\Events\Base\EnterpriseEventTicketsServiceBase.cs" />
+    <Compile Include="V2_1\Services\Enterprise\Events\Base\EnterpriseEventTicketsRulesServiceBase.cs" />
+    <Compile Include="V2_1\Services\Enterprise\EnterpriseCompanyService.cs" />
+    <Compile Include="V2_1\Services\Enterprise\Base\EnterprisePriceGroupsServiceBase.cs" />
+    <Compile Include="V2_1\Services\Enterprise\Base\EnterprisePricesProjectionServiceBase.cs" />
+    <Compile Include="V2_1\Services\Enterprise\EnterpriseSalesHistoryService.cs" />
+    <Compile Include="V2_1\Services\Enterprise\Base\EnterpriseValueOverridesServiceBase.cs" />
+    <Compile Include="V2_1\Services\Enterprise\Base\EnterpriseWorkflowApproval_OLDServiceBase.cs" />
+    <Compile Include="V2_1\Services\Enterprise\Events\EnterpriseEventCrowdingService.cs" />
+    <Compile Include="V2_1\Services\Enterprise\Events\EnterpriseEventCrowdingTicketService.cs" />
+    <Compile Include="V2_1\Services\Enterprise\Events\EnterpriseEventHistoryService.cs" />
+    <Compile Include="V2_1\Services\Enterprise\Events\EnterpriseEventPlaceService.cs" />
+    <Compile Include="V2_1\Services\Enterprise\Events\EnterpriseEventSectorService.cs" />
+    <Compile Include="V2_1\Services\Enterprise\Events\EnterpriseEventSectorReleaseService.cs" />
+    <Compile Include="V2_1\Services\Enterprise\Events\EnterpriseEventSectorTicketsService.cs" />
+    <Compile Include="V2_1\Services\Enterprise\Events\EnterpriseEventTicketsService.cs" />
+    <Compile Include="V2_1\Services\Enterprise\Events\EnterpriseEventTicketsRulesService.cs" />
+    <Compile Include="V2_1\Services\Enterprise\Events\Hist\EnterpriseEventCrowdingHistService.cs" />
+    <Compile Include="V2_1\Services\Enterprise\Events\Hist\EnterpriseEventCrowdingTicketHistService.cs" />
+    <Compile Include="V2_1\Services\Enterprise\Events\Hist\EnterpriseEventHistoryHistService.cs" />
+    <Compile Include="V2_1\Services\Enterprise\Events\Hist\EnterpriseEventPlaceHistService.cs" />
+    <Compile Include="V2_1\Services\Enterprise\Events\Hist\EnterpriseEventSectorReleaseHistService.cs" />
+    <Compile Include="V2_1\Services\Enterprise\Events\Hist\EnterpriseEventSectorHistService.cs" />
+    <Compile Include="V2_1\Services\Enterprise\Events\Hist\EnterpriseEventSectorTicketsHistService.cs" />
+    <Compile Include="V2_1\Services\Enterprise\Events\Hist\EnterpriseEventTicketsRulesHistService.cs" />
+    <Compile Include="V2_1\Services\Enterprise\Events\Hist\EnterpriseEventTicketsHistService.cs" />
+    <Compile Include="V2_1\Services\Enterprise\Prod\EnterpriseCalculateService.cs" />
+    <Compile Include="V2_1\Services\Enterprise\Prod\EnterpriseElasticityService.cs" />
+    <Compile Include="V2_1\Services\Enterprise\Prod\EnterpriseCrossElasticityService.cs" />
+    <Compile Include="V2_1\Services\Enterprise\Prod\EnterprisePriceGroupsService.cs" />
+    <Compile Include="V2_1\Services\Enterprise\Prod\EnterprisePriceGroups_FilterService.cs" />
+    <Compile Include="V2_1\Services\Enterprise\Prod\EnterprisePricesProjectionService.cs" />
+    <Compile Include="V2_1\Services\Enterprise\Prod\EnterpriseValueOverridesService.cs" />
+    <Compile Include="V2_1\Services\Enterprise\Prod\EnterpriseWorkflowApproval_OLDService.cs" />
+    <Compile Include="V2_1\Services\Enterprise\Prod\EnterpriseWorkflowService.cs" />
+    <Compile Include="V2_1\Services\Enterprise\Prod\IEnterprisePriceGroupsExcelFilesService.cs" />
+    <Compile Include="V2_1\Services\Enterprise\Simulation\EnterpriseCalculateServiceSimulation.cs" />
+    <Compile Include="V2_1\Services\Enterprise\Simulation\EnterprisePriceGroupsServiceSimulation.cs" />
+    <Compile Include="V2_1\Services\Enterprise\Simulation\EnterprisePriceGroups_FilterServiceSimulation.cs" />
+    <Compile Include="V2_1\Services\Enterprise\Simulation\EnterprisePricesProjectionServiceSimulation.cs" />
+    <Compile Include="V2_1\Services\Enterprise\Simulation\EnterpriseValueOverridesServiceSimulation.cs" />
+    <Compile Include="V2_1\Services\Enterprise\Simulation\EnterpriseWorkflowApproval_OLDServiceSimulation.cs" />
+    <Compile Include="V2_1\Services\Enterprise\EnterpriseCompanyMonitoringConfigurationService.cs" />
+    <Compile Include="V2_1\Services\FileManagementService.cs" />
+    <Compile Include="V2_1\Services\GrupoAcessos\Usuario_GrupoRecursoService.cs" />
+    <Compile Include="V2_1\Services\GrupoAcessos\GrupoRecursoService.cs" />
+    <Compile Include="V2_1\Services\GrupoAcessos\GrupoRecurso_RecursoService.cs" />
+    <Compile Include="V2_1\Services\GrupoAcessos\Usuario_ProdutoCategoriaService.cs" />
+    <Compile Include="V2_1\Services\Epplus\ExportarPlanilha.cs" />
+    <Compile Include="V2_1\Services\Home\HomeService.cs" />
+    <Compile Include="V2_1\Services\Integracao\IntegrationService.cs" />
+    <Compile Include="V2_1\Services\Integracao\ProductOmieConfigService.cs" />
+    <Compile Include="V2_1\Services\Market\ElasticSearchService.cs" />
+    <Compile Include="V2_1\Services\Market\ElasticSearch_HTTP.cs" />
+    <Compile Include="V2_1\Services\Market\Marketplace_PrecoService.cs" />
+    <Compile Include="V2_1\Services\Market\PricingService.cs" />
+    <Compile Include="V2_1\Services\Market\Product_MarketplaceService.cs" />
+    <Compile Include="V2_1\Services\Monitoring\Company_MonitoringCrawlerService.cs" />
+    <Compile Include="V2_1\Services\Monitoring\FilesImport\Model\PredimonitorProdutoModel.cs" />
+    <Compile Include="V2_1\Services\Monitoring\FilesImport\PredimonitorFileReader.cs" />
+    <Compile Include="V2_1\Services\Monitoring\FilesImport\PredimonitorHeaderModel.cs" />
+    <Compile Include="V2_1\Services\Monitoring\KeyVaultManager.cs" />
+    <Compile Include="V2_1\Services\Monitoring\MonitoringBatchService.cs" />
+    <Compile Include="V2_1\Services\Monitoring\MonitoringItem_PriceAlertService.cs" />
+    <Compile Include="V2_1\Services\Monitoring\IgnoredMonitoringItemService.cs" />
+    <Compile Include="V2_1\Services\Monitoring\MonitoringCrawlerService.cs" />
+    <Compile Include="V2_1\Services\Monitoring\MonitoringGroupService.cs" />
+    <Compile Include="V2_1\Services\Monitoring\MonitoringItem_ConfigService.cs" />
+    <Compile Include="V2_1\Services\Monitoring\MonitoringItem_LastPriceService.cs" />
+    <Compile Include="V2_1\Services\Monitoring\MonitoringItem_LeadService.cs" />
+    <Compile Include="V2_1\Services\Monitoring\MonitoringItem_ProductManualResultService.cs" />
+    <Compile Include="V2_1\Services\Monitoring\MonitoringMongoFiltersService.cs" />
+    <Compile Include="V2_1\Services\Monitoring\Monitoring_ProductMarketResultService.cs" />
+    <Compile Include="V2_1\Services\Monitoring\MonitoringPredimonitorFilterService.cs" />
+    <Compile Include="V2_1\Services\Monitoring\MonitoringItemService.cs" />
+    <Compile Include="V2_1\Services\Monitoring\MonitoringPredimonitorCompanyCustomFilterService.cs" />
+    <Compile Include="V2_1\Services\Monitoring\PrediMonitorService.cs" />
+    <Compile Include="V2_1\Services\Monitoring\SearchAPIService.cs" />
+    <Compile Include="V2_1\Services\Monitoring\MonitoringService.cs" />
+    <Compile Include="V2_1\Services\Precificacao\PreBrandsService.cs" />
+    <Compile Include="V2_1\Services\Precificacao\PrePartNumbersService.cs" />
+    <Compile Include="V2_1\Services\Precificacao\PreGrupoPesquisaProdutoService.cs" />
+    <Compile Include="V2_1\Services\Precificacao\PreGruposPesquisaService.cs" />
+    <Compile Include="V2_1\Services\Precificacao\PreSearch.cs" />
+    <Compile Include="V2_1\Services\PrediMonitorNewAPI\PrediMonitorAPIService.cs" />
+    <Compile Include="V2_1\Services\Produtos\FichaTecnicaService.cs" />
+    <Compile Include="V2_1\Services\Produtos\FichaTecnicaInsumoService.cs" />
+    <Compile Include="V2_1\Services\Produtos\ProdutoService.cs" />
+    <Compile Include="Services\V2\ServiceBaseV2.cs" />
+    <Compile Include="Services\V2\ServiceContextBase.cs" />
+    <Compile Include="Services\V2\ServiceDBOBase.cs" />
+    <Compile Include="Services\V2\ViabilidadeService.cs" />
+    <Compile Include="Startup.cs" />
+    <Compile Include="V2_1\Services\Region\RegionsService.cs" />
+    <Compile Include="V2_1\Services\Report\ReportPricingService.cs" />
+    <Compile Include="V2_1\Services\Resources\LicencaService.cs" />
+    <Compile Include="V2_1\Services\Resources\RecursoService.cs" />
+    <Compile Include="V2_1\Services\ScyllaDB\ConnectionBase.cs" />
+    <Compile Include="V2_1\Services\ScyllaDB\ScyllaDBConnection.cs" />
+    <Compile Include="V2_1\Services\ScyllaDB\ScyllaDBService.cs" />
+    <Compile Include="V2_1\Services\ServiceBase.cs" />
+    <Compile Include="V2_1\Services\Sparks\SparkHttp_V2_4_5.cs" />
+    <Compile Include="V2_1\Services\Sparks\SparksService.cs" />
+    <Compile Include="V2_1\Services\Subscription\SubscriptionActionsService.cs" />
+    <Compile Include="V2_1\Services\Support\Support_TicketSubjectService.cs" />
+    <Compile Include="V2_1\Services\Support\Support_TicketMessageService.cs" />
+    <Compile Include="V2_1\Services\Support\Support_TicketService.cs" />
+    <Compile Include="V2_1\Services\ScheduleJobs\ScheduleJobsService.cs" />
+    <Compile Include="V2_1\Services\ThirdParty\Empresa_S3Service.cs" />
+    <Compile Include="V2_1\Services\Users\UserAdminRolesService.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="packages.config">
+      <SubType>Designer</SubType>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Controllers\V2_1\Clients\Petrobahia\Extenions\" />
+    <Folder Include="Models\SAP\" />
+    <Folder Include="V2_1\Extensions\Resources\" />
+    <Folder Include="V2_1\Models\Enterprise\Event\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DSS.Business\DSS.Business.csproj">
+      <Project>{1357149e-222a-4dfe-9c92-a81c764bc67b}</Project>
+      <Name>DSS.Business</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DSS.Common\DSS.Common.csproj">
+      <Project>{036f7e91-1fd2-40fa-9b5e-f17d2c87af51}</Project>
+      <Name>DSS.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DSS.Model\DSS.Model.csproj">
+      <Project>{d109a4f7-9665-412b-965d-b11d58d62aab}</Project>
+      <Name>DSS.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Predify.DBO\Predify.DBO.csproj">
+      <Project>{074A08D7-A921-4B98-A603-5E0767DD6FFF}</Project>
+      <Name>Predify.DBO</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Predify.Models\Predify.Models.csproj">
+      <Project>{62113546-a466-4c05-acb3-11a12d053ebf}</Project>
+      <Name>Predify.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Predify_Integracoes\Predify_Integracoes\Predify_Integracoes.csproj">
+      <Project>{F7BD6B21-6669-4442-B7CF-B055D8E713F5}</Project>
+      <Name>Predify_Integracoes</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Analyzer Include="..\packages\AWSSDK.S3.3.5.3.11\analyzers\dotnet\cs\AWSSDK.S3.CodeAnalysis.dll" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'MOCK|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;MOCK</DefineConstants>
+    <DocumentationFile>App_Data/XmlDocument.xml</DocumentationFile>
+    <WarningLevel>0</WarningLevel>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>False</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>5162</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>https://localhost:44300/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.1\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.1\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.Net.Compilers.1.1.1\build\Microsoft.Net.Compilers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Net.Compilers.1.1.1\build\Microsoft.Net.Compilers.props'))" />
+    <Error Condition="!Exists('..\packages\MongoDB.Libmongocrypt.1.2.2\build\MongoDB.Libmongocrypt.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\MongoDB.Libmongocrypt.1.2.2\build\MongoDB.Libmongocrypt.targets'))" />
+    <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.props'))" />
+    <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.targets'))" />
+    <Error Condition="!Exists('..\packages\MongoDB.Driver.Core.2.13.3\build\MongoDB.Driver.Core.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\MongoDB.Driver.Core.2.13.3\build\MongoDB.Driver.Core.targets'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.ApplicationInsights.DependencyCollector.2.21.0\build\Microsoft.ApplicationInsights.DependencyCollector.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.ApplicationInsights.DependencyCollector.2.21.0\build\Microsoft.ApplicationInsights.DependencyCollector.targets'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.ApplicationInsights.PerfCounterCollector.2.21.0\build\Microsoft.ApplicationInsights.PerfCounterCollector.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.ApplicationInsights.PerfCounterCollector.2.21.0\build\Microsoft.ApplicationInsights.PerfCounterCollector.targets'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.ApplicationInsights.WindowsServer.TelemetryChannel.2.21.0\build\Microsoft.ApplicationInsights.WindowsServer.TelemetryChannel.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.ApplicationInsights.WindowsServer.TelemetryChannel.2.21.0\build\Microsoft.ApplicationInsights.WindowsServer.TelemetryChannel.targets'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.ApplicationInsights.WindowsServer.2.21.0\build\Microsoft.ApplicationInsights.WindowsServer.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.ApplicationInsights.WindowsServer.2.21.0\build\Microsoft.ApplicationInsights.WindowsServer.targets'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.ApplicationInsights.Web.2.21.0\build\Microsoft.ApplicationInsights.Web.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.ApplicationInsights.Web.2.21.0\build\Microsoft.ApplicationInsights.Web.targets'))" />
+  </Target>
+  <PropertyGroup>
+    <PostBuildEvent>xcopy "$(TargetDir)\Dependencias" "$(TargetDir)" /s /e /h /y</PostBuildEvent>
+  </PropertyGroup>
+  <Import Project="..\packages\MongoDB.Libmongocrypt.1.2.2\build\MongoDB.Libmongocrypt.targets" Condition="Exists('..\packages\MongoDB.Libmongocrypt.1.2.2\build\MongoDB.Libmongocrypt.targets')" />
+  <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.targets" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" />
+  <Import Project="..\packages\MongoDB.Driver.Core.2.13.3\build\MongoDB.Driver.Core.targets" Condition="Exists('..\packages\MongoDB.Driver.Core.2.13.3\build\MongoDB.Driver.Core.targets')" />
+  <Import Project="..\packages\Microsoft.ApplicationInsights.DependencyCollector.2.21.0\build\Microsoft.ApplicationInsights.DependencyCollector.targets" Condition="Exists('..\packages\Microsoft.ApplicationInsights.DependencyCollector.2.21.0\build\Microsoft.ApplicationInsights.DependencyCollector.targets')" />
+  <Import Project="..\packages\Microsoft.ApplicationInsights.PerfCounterCollector.2.21.0\build\Microsoft.ApplicationInsights.PerfCounterCollector.targets" Condition="Exists('..\packages\Microsoft.ApplicationInsights.PerfCounterCollector.2.21.0\build\Microsoft.ApplicationInsights.PerfCounterCollector.targets')" />
+  <Import Project="..\packages\Microsoft.ApplicationInsights.WindowsServer.TelemetryChannel.2.21.0\build\Microsoft.ApplicationInsights.WindowsServer.TelemetryChannel.targets" Condition="Exists('..\packages\Microsoft.ApplicationInsights.WindowsServer.TelemetryChannel.2.21.0\build\Microsoft.ApplicationInsights.WindowsServer.TelemetryChannel.targets')" />
+  <Import Project="..\packages\Microsoft.ApplicationInsights.WindowsServer.2.21.0\build\Microsoft.ApplicationInsights.WindowsServer.targets" Condition="Exists('..\packages\Microsoft.ApplicationInsights.WindowsServer.2.21.0\build\Microsoft.ApplicationInsights.WindowsServer.targets')" />
+  <Import Project="..\packages\Microsoft.ApplicationInsights.Web.2.21.0\build\Microsoft.ApplicationInsights.Web.targets" Condition="Exists('..\packages\Microsoft.ApplicationInsights.Web.2.21.0\build\Microsoft.ApplicationInsights.Web.targets')" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,27 @@
+﻿Foi inserido no arquivo de Projeto DSS.WebApiService.csproj, o grupo abaixo, ele remove do publish o 
+arquivo web.config para não gerar problemas no deploy.
+
+<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' "> 
+	<ExcludeFilesFromDeployment>Web.config;Web.config</ExcludeFilesFromDeployment> 
+</PropertyGroup>
+
+
+
+
+Insert into Pre_Inteligente_Segmento (idEmpresa,IsDeletado,DataHoraCriacao,DataHoraUltimaAlteracao) values (1500,0,GETDATE(),GETDATE(),9 );
+Insert into Pre_Inteligente_Segmento (idEmpresa,IsDeletado,DataHoraCriacao,DataHoraUltimaAlteracao) values (1500,0,GETDATE(),GETDATE(),10);
+Insert into Pre_Inteligente_Segmento (idEmpresa,IsDeletado,DataHoraCriacao,DataHoraUltimaAlteracao) values (1500,0,GETDATE(),GETDATE(),11);
+Insert into Pre_Inteligente_Segmento (idEmpresa,IsDeletado,DataHoraCriacao,DataHoraUltimaAlteracao) values (1500,0,GETDATE(),GETDATE(),16);
+Insert into Pre_Inteligente_Segmento (idEmpresa,IsDeletado,DataHoraCriacao,DataHoraUltimaAlteracao) values (1500,0,GETDATE(),GETDATE(),17);
+Insert into Pre_Inteligente_Segmento (idEmpresa,IsDeletado,DataHoraCriacao,DataHoraUltimaAlteracao) values (1500,0,GETDATE(),GETDATE(),18);
+Insert into Pre_Inteligente_Segmento (idEmpresa,IsDeletado,DataHoraCriacao,DataHoraUltimaAlteracao) values (1500,0,GETDATE(),GETDATE(),20);
+Insert into Pre_Inteligente_Segmento (idEmpresa,IsDeletado,DataHoraCriacao,DataHoraUltimaAlteracao) values (1500,0,GETDATE(),GETDATE(),21);
+Insert into Pre_Inteligente_Segmento (idEmpresa,IsDeletado,DataHoraCriacao,DataHoraUltimaAlteracao) values (1500,0,GETDATE(),GETDATE(),22);
+Insert into Pre_Inteligente_Segmento (idEmpresa,IsDeletado,DataHoraCriacao,DataHoraUltimaAlteracao) values (1500,0,GETDATE(),GETDATE(),23);
+Insert into Pre_Inteligente_Segmento (idEmpresa,IsDeletado,DataHoraCriacao,DataHoraUltimaAlteracao) values (1500,0,GETDATE(),GETDATE(),24);
+Insert into Pre_Inteligente_Segmento (idEmpresa,IsDeletado,DataHoraCriacao,DataHoraUltimaAlteracao) values (1500,0,GETDATE(),GETDATE(),29);
+Insert into Pre_Inteligente_Segmento (idEmpresa,IsDeletado,DataHoraCriacao,DataHoraUltimaAlteracao) values (1500,0,GETDATE(),GETDATE(),44);
+Insert into Pre_Inteligente_Segmento (idEmpresa,IsDeletado,DataHoraCriacao,DataHoraUltimaAlteracao) values (1500,0,GETDATE(),GETDATE(),45);
+Insert into Pre_Inteligente_Segmento (idEmpresa,IsDeletado,DataHoraCriacao,DataHoraUltimaAlteracao) values (1500,0,GETDATE(),GETDATE(),46);
+Insert into Pre_Inteligente_Segmento (idEmpresa,IsDeletado,DataHoraCriacao,DataHoraUltimaAlteracao) values (1500,0,GETDATE(),GETDATE(),47);
+Insert into Pre_Inteligente_Segmento (idEmpresa,IsDeletado,DataHoraCriacao,DataHoraUltimaAlteracao) values (1500,0,GETDATE(),GETDATE(),48);

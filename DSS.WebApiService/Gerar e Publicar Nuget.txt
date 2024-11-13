@@ -1,0 +1,34 @@
+﻿Para criar um Nuget, no dotnet framework 4.6.1
+
+É necessário adicionar as seguintes linhas no arquivo do projeto (csproj), utilizar um editor de texto.
+
+Dentro da TAG <ItemGroup> adicionar
+
+    <PackageReference Include="NuGet.Build.Tasks.Pack" Version="5.9.1">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+
+Dentro da TAG   <PropertyGroup> Geral, adicionar:
+
+    <PackageId>Predify.ContextQueries</PackageId>
+    <Version>1.0.0</Version>
+    <Authors>Gustavo</Authors>
+    <Company>Predify</Company>
+
+Sempre que gerar uma nova versão, é necessário atualizar a versão da tag <Version>.
+
+É necessário criar um arquivo sleet.json na pasta do projeto, utilizar o arquivo deste projeto como exemplo.
+
+Para gerar o Package:
+1º - abrir o Package Manager Console
+2º - Entrar na pasta do projeto
+3º - Gerar o pacote:
+
+dotnet pack ./ -c Release --force --include-symbols -o ./built_packages
+
+4º - Publicar usando o sleet:
+
+sleet push .\built_packages\<nome do pacote.nupkg> --config ./sleet.json --source Predify-Nuget
+
+onde NugetSource é o valor da TAG <name> dentro do arquivo sleet.json
